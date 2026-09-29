@@ -1,15 +1,15 @@
 import {
   PdfExportService
-} from "./chunk-CKEB6ORU.js";
+} from "./chunk-GWGPZ2QV.js";
 import {
   ExerciseLibraryService
-} from "./chunk-564HYZGK.js";
+} from "./chunk-L4GHQBDP.js";
 import {
   DataService
-} from "./chunk-TTYTNCN5.js";
+} from "./chunk-BB27IXKD.js";
 import {
   it
-} from "./chunk-RJQGLTWD.js";
+} from "./chunk-BQJ4SSXP.js";
 import {
   ActivatedRoute,
   CommonModule,
@@ -42,7 +42,7 @@ import {
   ɵɵtextInterpolate,
   ɵɵtextInterpolate1,
   ɵɵtextInterpolate2
-} from "./chunk-BQNJQGMQ.js";
+} from "./chunk-Q4IH74E4.js";
 
 // src/app/features/clients/client-detail/client-detail.component.ts
 var _forTrack0 = ($index, $item) => $item.id;
@@ -334,4 +334,4 @@ var ClientDetailComponent = class _ClientDetailComponent {
 export {
   ClientDetailComponent
 };
-//# sourceMappingURL=chunk-OOFNGPRY.js.map
+//# sourceMappingURL=chunk-AXGRDWLE.js.map

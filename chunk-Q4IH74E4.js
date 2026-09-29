@@ -59149,7 +59149,7 @@ var SupabaseService = class _SupabaseService {
 })();
 
 // src/app/core/mock/mock-state.ts
-var STORAGE_KEY2 = "sa-mock-state-v1";
+var STORAGE_KEY2 = "sa-mock-state-v2";
 function uuid() {
   return crypto.randomUUID();
 }
@@ -59158,7 +59158,7 @@ function seedState() {
   const trainerId = uuid();
   const clientId = uuid();
   return {
-    authUsers: [{ id: trainerId, email: "allenatore@schede-allenamento.it", password: "SchedaForte2026!" }],
+    authUsers: [{ id: trainerId, email: "cinzia.rosato@vigor.app", password: "cinzianuovavita!123" }],
     clients: [
       {
         id: clientId,
@@ -59491,4 +59491,4 @@ export {
    * found in the LICENSE file at https://angular.dev/license
    *)
 */
-//# sourceMappingURL=chunk-BQNJQGMQ.js.map
+//# sourceMappingURL=chunk-Q4IH74E4.js.map

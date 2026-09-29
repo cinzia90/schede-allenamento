@@ -8,7 +8,7 @@ import {
   NumberValueAccessor,
   SelectControlValueAccessor,
   ɵNgSelectMultipleOption
-} from "./chunk-L6TH5YE7.js";
+} from "./chunk-CH3AVVHT.js";
 import {
   ExerciseLibraryService,
   LOWER_BODY_GROUPS,
@@ -17,13 +17,13 @@ import {
   UPPER_BODY_GROUPS,
   exerciseDisplayName,
   exerciseImageUrl
-} from "./chunk-564HYZGK.js";
+} from "./chunk-L4GHQBDP.js";
 import {
   DataService
-} from "./chunk-TTYTNCN5.js";
+} from "./chunk-BB27IXKD.js";
 import {
   it
-} from "./chunk-RJQGLTWD.js";
+} from "./chunk-BQJ4SSXP.js";
 import {
   ActivatedRoute,
   CommonModule,
@@ -61,7 +61,7 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty
-} from "./chunk-BQNJQGMQ.js";
+} from "./chunk-Q4IH74E4.js";
 
 // src/app/features/sheets/sheet-builder/sheet-builder.component.ts
 var _forTrack0 = ($index, $item) => $item.value;
@@ -221,17 +221,65 @@ function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2
     \u0275\u0275property("src", ctx_r1.exerciseImageUrl(img_r16), \u0275\u0275sanitizeUrl)("alt", ex_r17.name);
   }
 }
-function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_For_22_Template(rf, ctx) {
+function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_For_4_Template(rf, ctx) {
   if (rf & 1) {
-    \u0275\u0275elementStart(0, "option", 6);
+    const _r20 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "li", 54);
+    \u0275\u0275listener("mousedown", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_For_4_Template_li_mousedown_0_listener() {
+      const tech_r21 = \u0275\u0275restoreView(_r20).$implicit;
+      const entry_r18 = \u0275\u0275nextContext(3).$implicit;
+      const ctx_r1 = \u0275\u0275nextContext(4);
+      return \u0275\u0275resetView(ctx_r1.selectTechnique(ctx_r1.activeDayIndex(), entry_r18.exerciseId, tech_r21.value));
+    });
+    \u0275\u0275elementStart(1, "span", 55);
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(3, "span", 56);
+    \u0275\u0275text(4);
+    \u0275\u0275elementEnd()();
+  }
+  if (rf & 2) {
+    const tech_r21 = ctx.$implicit;
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(tech_r21.label);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate(tech_r21.description);
+  }
+}
+function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_ForEmpty_5_Template(rf, ctx) {
+  if (rf & 1) {
+    \u0275\u0275elementStart(0, "li", 53);
     \u0275\u0275text(1);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
-    const tech_r19 = ctx.$implicit;
-    \u0275\u0275property("value", tech_r19.value);
+    const ctx_r1 = \u0275\u0275nextContext(7);
     \u0275\u0275advance();
-    \u0275\u0275textInterpolate(tech_r19.label);
+    \u0275\u0275textInterpolate(ctx_r1.t.techniqueNoMatch);
+  }
+}
+function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r19 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "ul", 48)(1, "li", 51);
+    \u0275\u0275listener("mousedown", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_Template_li_mousedown_1_listener() {
+      \u0275\u0275restoreView(_r19);
+      const entry_r18 = \u0275\u0275nextContext(2).$implicit;
+      const ctx_r1 = \u0275\u0275nextContext(4);
+      return \u0275\u0275resetView(ctx_r1.selectTechnique(ctx_r1.activeDayIndex(), entry_r18.exerciseId, ""));
+    });
+    \u0275\u0275text(2);
+    \u0275\u0275elementEnd();
+    \u0275\u0275repeaterCreate(3, SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_For_4_Template, 5, 2, "li", 52, _forTrack0, false, SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_ForEmpty_5_Template, 2, 1, "li", 53);
+    \u0275\u0275elementEnd();
+  }
+  if (rf & 2) {
+    const entry_r18 = \u0275\u0275nextContext(2).$implicit;
+    const ctx_r1 = \u0275\u0275nextContext(4);
+    \u0275\u0275advance(2);
+    \u0275\u0275textInterpolate1(" ", ctx_r1.t.techniqueNone, " ");
+    \u0275\u0275advance();
+    \u0275\u0275repeater(ctx_r1.techniqueMatches(ctx_r1.activeDayIndex(), entry_r18.exerciseId));
   }
 }
 function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template(rf, ctx) {
@@ -275,36 +323,44 @@ function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2
     \u0275\u0275elementEnd()()();
     \u0275\u0275elementStart(16, "label", 46);
     \u0275\u0275text(17);
-    \u0275\u0275elementStart(18, "select", 5);
-    \u0275\u0275twoWayListener("ngModelChange", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_select_ngModelChange_18_listener($event) {
+    \u0275\u0275elementStart(18, "input", 47);
+    \u0275\u0275listener("ngModelChange", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_input_ngModelChange_18_listener($event) {
       \u0275\u0275restoreView(_r15);
       const entry_r18 = \u0275\u0275nextContext().$implicit;
-      \u0275\u0275twoWayBindingSet(entry_r18.technique, $event) || (entry_r18.technique = $event);
-      return \u0275\u0275resetView($event);
+      const ctx_r1 = \u0275\u0275nextContext(4);
+      return \u0275\u0275resetView(ctx_r1.onTechniqueQuery(ctx_r1.activeDayIndex(), entry_r18.exerciseId, $event));
+    })("focus", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_input_focus_18_listener() {
+      \u0275\u0275restoreView(_r15);
+      const entry_r18 = \u0275\u0275nextContext().$implicit;
+      const ctx_r1 = \u0275\u0275nextContext(4);
+      return \u0275\u0275resetView(ctx_r1.onTechniqueFocus(ctx_r1.activeDayIndex(), entry_r18.exerciseId));
+    })("blur", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_input_blur_18_listener() {
+      \u0275\u0275restoreView(_r15);
+      const entry_r18 = \u0275\u0275nextContext().$implicit;
+      const ctx_r1 = \u0275\u0275nextContext(4);
+      return \u0275\u0275resetView(ctx_r1.onTechniqueBlur(ctx_r1.activeDayIndex(), entry_r18.exerciseId));
     });
-    \u0275\u0275elementStart(19, "option", 47);
-    \u0275\u0275text(20);
     \u0275\u0275elementEnd();
-    \u0275\u0275repeaterCreate(21, SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_For_22_Template, 2, 2, "option", 6, _forTrack0);
-    \u0275\u0275elementEnd()();
-    \u0275\u0275elementStart(23, "label", 46);
-    \u0275\u0275text(24);
-    \u0275\u0275elementStart(25, "input", 45);
-    \u0275\u0275twoWayListener("ngModelChange", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_input_ngModelChange_25_listener($event) {
+    \u0275\u0275template(19, SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Conditional_19_Template, 6, 2, "ul", 48);
+    \u0275\u0275elementEnd();
+    \u0275\u0275elementStart(20, "label", 49);
+    \u0275\u0275text(21);
+    \u0275\u0275elementStart(22, "input", 45);
+    \u0275\u0275twoWayListener("ngModelChange", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_input_ngModelChange_22_listener($event) {
       \u0275\u0275restoreView(_r15);
       const entry_r18 = \u0275\u0275nextContext().$implicit;
       \u0275\u0275twoWayBindingSet(entry_r18.notes, $event) || (entry_r18.notes = $event);
       return \u0275\u0275resetView($event);
     });
     \u0275\u0275elementEnd()()();
-    \u0275\u0275elementStart(26, "button", 48);
-    \u0275\u0275listener("click", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_button_click_26_listener() {
+    \u0275\u0275elementStart(23, "button", 50);
+    \u0275\u0275listener("click", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template_button_click_23_listener() {
       \u0275\u0275restoreView(_r15);
       const entry_r18 = \u0275\u0275nextContext().$implicit;
       const ctx_r1 = \u0275\u0275nextContext(4);
       return \u0275\u0275resetView(ctx_r1.removeExercise(ctx_r1.activeDayIndex(), entry_r18.exerciseId));
     });
-    \u0275\u0275text(27);
+    \u0275\u0275text(24);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -330,12 +386,10 @@ function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2
     \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1(" ", ctx_r1.t.technique, " ");
     \u0275\u0275advance();
-    \u0275\u0275twoWayProperty("ngModel", entry_r18.technique);
-    \u0275\u0275advance(2);
-    \u0275\u0275textInterpolate(ctx_r1.t.techniqueNone);
+    \u0275\u0275property("placeholder", ctx_r1.t.techniqueNone)("ngModel", ctx_r1.techniqueQueryValue(ctx_r1.activeDayIndex(), entry_r18.exerciseId, entry_r18.technique));
     \u0275\u0275advance();
-    \u0275\u0275repeater(ctx_r1.techniques);
-    \u0275\u0275advance(3);
+    \u0275\u0275conditional(ctx_r1.isTechniqueOpen(ctx_r1.activeDayIndex(), entry_r18.exerciseId) ? 19 : -1);
+    \u0275\u0275advance(2);
     \u0275\u0275textInterpolate1(" ", ctx_r1.t.notes, " ");
     \u0275\u0275advance();
     \u0275\u0275twoWayProperty("ngModel", entry_r18.notes);
@@ -346,7 +400,7 @@ function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2
 function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Template(rf, ctx) {
   if (rf & 1) {
     \u0275\u0275elementStart(0, "li", 40);
-    \u0275\u0275template(1, SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template, 28, 13);
+    \u0275\u0275template(1, SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_For_2_Conditional_1_Template, 25, 14);
     \u0275\u0275elementEnd();
   }
   if (rf & 2) {
@@ -371,10 +425,10 @@ function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_17_Templ
 }
 function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_21_Template(rf, ctx) {
   if (rf & 1) {
-    const _r20 = \u0275\u0275getCurrentView();
-    \u0275\u0275elementStart(0, "button", 49);
+    const _r22 = \u0275\u0275getCurrentView();
+    \u0275\u0275elementStart(0, "button", 57);
     \u0275\u0275listener("click", function SheetBuilderComponent_Conditional_3_Conditional_13_Conditional_21_Template_button_click_0_listener() {
-      \u0275\u0275restoreView(_r20);
+      \u0275\u0275restoreView(_r22);
       const ctx_r1 = \u0275\u0275nextContext(3);
       return \u0275\u0275resetView(ctx_r1.setActiveDay(ctx_r1.activeDayIndex() + 1));
     });
@@ -569,6 +623,7 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
   clientId = "";
   sheetId = null;
   exerciseById = /* @__PURE__ */ new Map();
+  techniqueQuery = /* @__PURE__ */ new Map();
   constructor(route, router, data, exerciseLibrary) {
     this.route = route;
     this.router = router;
@@ -710,6 +765,45 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
   exerciseOf(id) {
     return this.exerciseById.get(id);
   }
+  techniqueKey(dayIndex, exerciseId) {
+    return `${dayIndex}-${exerciseId}`;
+  }
+  techniqueLabelFor(value) {
+    return this.techniques.find((t) => t.value === value)?.label ?? "";
+  }
+  isTechniqueOpen(dayIndex, exerciseId) {
+    return this.techniqueQuery.has(this.techniqueKey(dayIndex, exerciseId));
+  }
+  techniqueQueryValue(dayIndex, exerciseId, currentTechnique) {
+    const key = this.techniqueKey(dayIndex, exerciseId);
+    return this.techniqueQuery.has(key) ? this.techniqueQuery.get(key) : this.techniqueLabelFor(currentTechnique);
+  }
+  onTechniqueFocus(dayIndex, exerciseId) {
+    this.techniqueQuery.set(this.techniqueKey(dayIndex, exerciseId), "");
+  }
+  onTechniqueQuery(dayIndex, exerciseId, text) {
+    this.techniqueQuery.set(this.techniqueKey(dayIndex, exerciseId), text);
+  }
+  onTechniqueBlur(dayIndex, exerciseId) {
+    setTimeout(() => this.techniqueQuery.delete(this.techniqueKey(dayIndex, exerciseId)), 150);
+  }
+  techniqueMatches(dayIndex, exerciseId) {
+    const term = (this.techniqueQuery.get(this.techniqueKey(dayIndex, exerciseId)) ?? "").trim().toLowerCase();
+    if (!term) {
+      return this.techniques;
+    }
+    return this.techniques.filter((t) => t.label.toLowerCase().includes(term));
+  }
+  selectTechnique(dayIndex, exerciseId, value) {
+    this.days.update((days) => {
+      const day = days[dayIndex];
+      const exercises = day.exercises.map((e) => e.exerciseId === exerciseId ? __spreadProps(__spreadValues({}, e), { technique: value }) : e);
+      const copy = [...days];
+      copy[dayIndex] = __spreadProps(__spreadValues({}, day), { exercises });
+      return copy;
+    });
+    this.techniqueQuery.delete(this.techniqueKey(dayIndex, exerciseId));
+  }
   save() {
     return __async(this, null, function* () {
       this.errorMessage.set(null);
@@ -744,7 +838,7 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
   static \u0275fac = function SheetBuilderComponent_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _SheetBuilderComponent)(\u0275\u0275directiveInject(ActivatedRoute), \u0275\u0275directiveInject(Router), \u0275\u0275directiveInject(DataService), \u0275\u0275directiveInject(ExerciseLibraryService));
   };
-  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SheetBuilderComponent, selectors: [["app-sheet-builder"]], decls: 4, vars: 2, consts: [[1, "page"], ["type", "button", 1, "back", 3, "click"], [1, "sheet-title"], ["type", "text", 3, "ngModelChange", "placeholder", "ngModel"], [1, "days-count"], [3, "ngModelChange", "ngModel"], [3, "value"], [1, "step-indicator"], ["type", "button", 1, "step-dot", 3, "active", "done"], [1, "day-card"], [1, "error"], [1, "actions"], ["type", "button", 1, "ghost", 3, "click"], ["type", "button", 1, "primary", 3, "click", "disabled"], ["type", "button", 1, "step-dot", 3, "click"], [1, "day-step-title"], ["type", "text", 1, "day-label", 3, "ngModelChange", "placeholder", "ngModel"], [1, "muscle-groups"], [1, "mg-title"], [1, "mg-shortcuts"], ["type", "button", 1, "shortcut", 3, "click"], [1, "mg-chips"], [1, "chip", 3, "active"], [1, "hint"], [1, "picker"], [1, "exercise-list"], [1, "step-nav"], ["type", "button", 1, "ghost", 3, "click", "disabled"], ["type", "button", 1, "primary"], [1, "chip"], ["type", "checkbox", 3, "change", "checked"], ["type", "search", 1, "picker-filter", 3, "ngModelChange", "placeholder", "ngModel"], [1, "picker-list"], [1, "picker-item"], [1, "picker-empty"], [1, "picker-item", 3, "click"], [1, "thumbs"], ["loading", "lazy", 3, "src", "alt"], [1, "picker-item-name"], [1, "picker-item-add"], [1, "exercise-row"], [1, "exercise-fields"], [1, "exercise-name"], [1, "fields-row"], ["type", "number", "min", "1", 3, "ngModelChange", "ngModel"], ["type", "text", 3, "ngModelChange", "ngModel"], [1, "notes-field"], ["value", ""], ["type", "button", 1, "remove", 3, "click"], ["type", "button", 1, "primary", 3, "click"]], template: function SheetBuilderComponent_Template(rf, ctx) {
+  static \u0275cmp = /* @__PURE__ */ \u0275\u0275defineComponent({ type: _SheetBuilderComponent, selectors: [["app-sheet-builder"]], decls: 4, vars: 2, consts: [[1, "page"], ["type", "button", 1, "back", 3, "click"], [1, "sheet-title"], ["type", "text", 3, "ngModelChange", "placeholder", "ngModel"], [1, "days-count"], [3, "ngModelChange", "ngModel"], [3, "value"], [1, "step-indicator"], ["type", "button", 1, "step-dot", 3, "active", "done"], [1, "day-card"], [1, "error"], [1, "actions"], ["type", "button", 1, "ghost", 3, "click"], ["type", "button", 1, "primary", 3, "click", "disabled"], ["type", "button", 1, "step-dot", 3, "click"], [1, "day-step-title"], ["type", "text", 1, "day-label", 3, "ngModelChange", "placeholder", "ngModel"], [1, "muscle-groups"], [1, "mg-title"], [1, "mg-shortcuts"], ["type", "button", 1, "shortcut", 3, "click"], [1, "mg-chips"], [1, "chip", 3, "active"], [1, "hint"], [1, "picker"], [1, "exercise-list"], [1, "step-nav"], ["type", "button", 1, "ghost", 3, "click", "disabled"], ["type", "button", 1, "primary"], [1, "chip"], ["type", "checkbox", 3, "change", "checked"], ["type", "search", 1, "picker-filter", 3, "ngModelChange", "placeholder", "ngModel"], [1, "picker-list"], [1, "picker-item"], [1, "picker-empty"], [1, "picker-item", 3, "click"], [1, "thumbs"], ["loading", "lazy", 3, "src", "alt"], [1, "picker-item-name"], [1, "picker-item-add"], [1, "exercise-row"], [1, "exercise-fields"], [1, "exercise-name"], [1, "fields-row"], ["type", "number", "min", "1", 3, "ngModelChange", "ngModel"], ["type", "text", 3, "ngModelChange", "ngModel"], [1, "notes-field", "technique-field"], ["type", "text", 3, "ngModelChange", "focus", "blur", "placeholder", "ngModel"], [1, "technique-list"], [1, "notes-field"], ["type", "button", 1, "remove", 3, "click"], [1, "technique-item", "technique-item-none", 3, "mousedown"], [1, "technique-item"], [1, "technique-empty"], [1, "technique-item", 3, "mousedown"], [1, "technique-item-label"], [1, "technique-item-desc"], ["type", "button", 1, "primary", 3, "click"]], template: function SheetBuilderComponent_Template(rf, ctx) {
     if (rf & 1) {
       \u0275\u0275elementStart(0, "div", 0)(1, "button", 1);
       \u0275\u0275listener("click", function SheetBuilderComponent_Template_button_click_1_listener() {
@@ -761,7 +855,7 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
       \u0275\u0275advance();
       \u0275\u0275conditional(!ctx.loading() ? 3 : -1);
     }
-  }, dependencies: [CommonModule, FormsModule, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, MinValidator, NgModel], styles: ["\n\n.page[_ngcontent-%COMP%] {\n  max-width: 760px;\n  margin: 0 auto;\n  padding: var(--sa-space-4) var(--sa-space-3) var(--sa-space-5);\n}\n.back[_ngcontent-%COMP%] {\n  border: none;\n  background: none;\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-size: 14px;\n  cursor: pointer;\n  padding: 0;\n  margin-bottom: var(--sa-space-3);\n}\n.back[_ngcontent-%COMP%]:hover {\n  color: var(--sa-primary);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 20px;\n  margin: 0 0 var(--sa-space-3);\n}\nlabel[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n}\ninput[_ngcontent-%COMP%], \nselect[_ngcontent-%COMP%] {\n  font: inherit;\n  padding: 8px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  color: var(--sa-text);\n  background: var(--sa-surface);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\ninput[_ngcontent-%COMP%]:focus, \nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  border-color: var(--sa-primary);\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.sheet-title[_ngcontent-%COMP%], \n.days-count[_ngcontent-%COMP%] {\n  margin-bottom: var(--sa-space-3);\n  max-width: 320px;\n}\n.step-indicator[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin-bottom: var(--sa-space-3);\n}\n.step-dot[_ngcontent-%COMP%] {\n  width: 34px;\n  height: 34px;\n  flex-shrink: 0;\n  border-radius: 50%;\n  border: 1px solid var(--sa-border);\n  background: var(--sa-surface);\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.step-dot.done[_ngcontent-%COMP%] {\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n  background: color-mix(in srgb, var(--sa-primary) 10%, transparent);\n}\n.step-dot.active[_ngcontent-%COMP%] {\n  background: var(--sa-gradient);\n  border-color: transparent;\n  color: #fff;\n  box-shadow: var(--sa-shadow-md);\n  transform: scale(1.08);\n}\n.day-card[_ngcontent-%COMP%] {\n  background: var(--sa-surface);\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-lg);\n  padding: var(--sa-space-4);\n  margin-bottom: var(--sa-space-3);\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n  box-shadow: var(--sa-shadow-sm);\n}\n.day-step-title[_ngcontent-%COMP%] {\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--sa-primary-dark);\n  text-transform: uppercase;\n  letter-spacing: 0.03em;\n}\n.step-nav[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-2);\n  padding-top: var(--sa-space-2);\n  border-top: 1px solid var(--sa-border);\n}\n.day-label[_ngcontent-%COMP%] {\n  font-weight: 600;\n  font-size: 15px;\n  border: none;\n  border-bottom: 1px solid var(--sa-border);\n  border-radius: 0;\n  padding: 4px 0;\n}\n.mg-title[_ngcontent-%COMP%] {\n  display: block;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin-bottom: 6px;\n}\n.mg-chips[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.mg-shortcuts[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-bottom: 8px;\n}\n.shortcut[_ngcontent-%COMP%] {\n  padding: 6px 12px;\n  border: 1px solid var(--sa-primary);\n  border-radius: 999px;\n  background: color-mix(in srgb, var(--sa-primary) 6%, transparent);\n  color: var(--sa-primary-dark);\n  font: inherit;\n  font-size: 12px;\n  font-weight: 600;\n  cursor: pointer;\n}\n.shortcut[_ngcontent-%COMP%]:hover {\n  background: color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.chip[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  padding: 6px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: 999px;\n  font-size: 12px;\n  color: var(--sa-text);\n  cursor: pointer;\n}\n.chip[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n  width: auto;\n}\n.chip.active[_ngcontent-%COMP%] {\n  background: color-mix(in srgb, var(--sa-primary) 12%, transparent);\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n}\n.hint[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin: 0;\n}\n.picker[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.picker-filter[_ngcontent-%COMP%] {\n  width: 100%;\n}\n.picker-list[_ngcontent-%COMP%] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  max-height: 280px;\n  overflow-y: auto;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  padding: 4px;\n}\n.picker-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: var(--sa-space-2);\n  padding: 6px;\n  border-radius: var(--sa-radius-sm);\n  cursor: pointer;\n  transition: background 0.12s ease;\n}\n.picker-item[_ngcontent-%COMP%]:hover {\n  background: color-mix(in srgb, var(--sa-primary) 8%, transparent);\n}\n.picker-item[_ngcontent-%COMP%]   .thumbs[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 2px;\n  flex-shrink: 0;\n}\n.picker-item[_ngcontent-%COMP%]   .thumbs[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 36px;\n  height: 36px;\n  object-fit: cover;\n  border-radius: 4px;\n  background: var(--sa-bg);\n}\n.picker-item[_ngcontent-%COMP%]   .picker-item-name[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n  font-size: 13px;\n}\n.picker-item[_ngcontent-%COMP%]   .picker-item-add[_ngcontent-%COMP%] {\n  color: var(--sa-primary);\n  font-weight: 700;\n  font-size: 16px;\n  padding: 0 6px;\n}\n.picker-empty[_ngcontent-%COMP%] {\n  padding: var(--sa-space-2);\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  text-align: center;\n}\n.exercise-list[_ngcontent-%COMP%] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.exercise-row[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n  align-items: flex-start;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-md);\n  padding: var(--sa-space-2);\n  background: var(--sa-surface);\n  box-shadow: var(--sa-shadow-sm);\n}\n.thumbs[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 4px;\n  flex-shrink: 0;\n}\n.thumbs[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 56px;\n  height: 56px;\n  object-fit: cover;\n  border-radius: 6px;\n  background: var(--sa-bg);\n}\n.exercise-fields[_ngcontent-%COMP%] {\n  flex: 1 1 220px;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .exercise-name[_ngcontent-%COMP%] {\n  font-weight: 600;\n  font-size: 14px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .fields-row[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n}\n.exercise-fields[_ngcontent-%COMP%]   .fields-row[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  flex: 1 1 80px;\n  min-width: 0;\n}\n.exercise-fields[_ngcontent-%COMP%]   .fields-row[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .notes-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%], \n.exercise-fields[_ngcontent-%COMP%]   .notes-field[_ngcontent-%COMP%]   select[_ngcontent-%COMP%] {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.remove[_ngcontent-%COMP%] {\n  border: none;\n  background: none;\n  color: var(--sa-danger);\n  font-size: 12px;\n  cursor: pointer;\n  white-space: nowrap;\n}\n.error[_ngcontent-%COMP%] {\n  color: var(--sa-danger);\n  font-size: 14px;\n}\n.actions[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: flex-end;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-3);\n}\nbutton.primary[_ngcontent-%COMP%] {\n  padding: 10px 18px;\n  border: none;\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-gradient);\n  color: #fff;\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  box-shadow: var(--sa-shadow-md);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\nbutton.primary[_ngcontent-%COMP%]:hover:not(:disabled) {\n  transform: translateY(-1px);\n  box-shadow: var(--sa-shadow-lg);\n}\nbutton.primary[_ngcontent-%COMP%]:disabled {\n  opacity: 0.6;\n  transform: none;\n}\nbutton.ghost[_ngcontent-%COMP%] {\n  padding: 10px 16px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-surface);\n  color: var(--sa-text);\n  font: inherit;\n  cursor: pointer;\n  transition: border-color 0.15s ease, background 0.15s ease;\n}\nbutton.ghost[_ngcontent-%COMP%]:hover:not(:disabled) {\n  border-color: var(--sa-primary);\n  background: color-mix(in srgb, var(--sa-primary) 5%, var(--sa-surface));\n}\nbutton.ghost[_ngcontent-%COMP%]:disabled {\n  opacity: 0.5;\n  cursor: default;\n}\n/*# sourceMappingURL=sheet-builder.component.css.map */"] });
+  }, dependencies: [CommonModule, FormsModule, NgSelectOption, \u0275NgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, SelectControlValueAccessor, NgControlStatus, MinValidator, NgModel], styles: ["\n\n.page[_ngcontent-%COMP%] {\n  max-width: 760px;\n  margin: 0 auto;\n  padding: var(--sa-space-4) var(--sa-space-3) var(--sa-space-5);\n}\n.back[_ngcontent-%COMP%] {\n  border: none;\n  background: none;\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-size: 14px;\n  cursor: pointer;\n  padding: 0;\n  margin-bottom: var(--sa-space-3);\n}\n.back[_ngcontent-%COMP%]:hover {\n  color: var(--sa-primary);\n}\nh1[_ngcontent-%COMP%] {\n  font-size: 20px;\n  margin: 0 0 var(--sa-space-3);\n}\nlabel[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n}\ninput[_ngcontent-%COMP%], \nselect[_ngcontent-%COMP%] {\n  font: inherit;\n  padding: 8px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  color: var(--sa-text);\n  background: var(--sa-surface);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\ninput[_ngcontent-%COMP%]:focus, \nselect[_ngcontent-%COMP%]:focus {\n  outline: none;\n  border-color: var(--sa-primary);\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.sheet-title[_ngcontent-%COMP%], \n.days-count[_ngcontent-%COMP%] {\n  margin-bottom: var(--sa-space-3);\n  max-width: 320px;\n}\n.step-indicator[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin-bottom: var(--sa-space-3);\n}\n.step-dot[_ngcontent-%COMP%] {\n  width: 34px;\n  height: 34px;\n  flex-shrink: 0;\n  border-radius: 50%;\n  border: 1px solid var(--sa-border);\n  background: var(--sa-surface);\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.step-dot.done[_ngcontent-%COMP%] {\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n  background: color-mix(in srgb, var(--sa-primary) 10%, transparent);\n}\n.step-dot.active[_ngcontent-%COMP%] {\n  background: var(--sa-gradient);\n  border-color: transparent;\n  color: #fff;\n  box-shadow: var(--sa-shadow-md);\n  transform: scale(1.08);\n}\n.day-card[_ngcontent-%COMP%] {\n  background: var(--sa-surface);\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-lg);\n  padding: var(--sa-space-4);\n  margin-bottom: var(--sa-space-3);\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n  box-shadow: var(--sa-shadow-sm);\n}\n.day-step-title[_ngcontent-%COMP%] {\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--sa-primary-dark);\n  text-transform: uppercase;\n  letter-spacing: 0.03em;\n}\n.step-nav[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: space-between;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-2);\n  padding-top: var(--sa-space-2);\n  border-top: 1px solid var(--sa-border);\n}\n.day-label[_ngcontent-%COMP%] {\n  font-weight: 600;\n  font-size: 15px;\n  border: none;\n  border-bottom: 1px solid var(--sa-border);\n  border-radius: 0;\n  padding: 4px 0;\n}\n.mg-title[_ngcontent-%COMP%] {\n  display: block;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin-bottom: 6px;\n}\n.mg-chips[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.mg-shortcuts[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-bottom: 8px;\n}\n.shortcut[_ngcontent-%COMP%] {\n  padding: 6px 12px;\n  border: 1px solid var(--sa-primary);\n  border-radius: 999px;\n  background: color-mix(in srgb, var(--sa-primary) 6%, transparent);\n  color: var(--sa-primary-dark);\n  font: inherit;\n  font-size: 12px;\n  font-weight: 600;\n  cursor: pointer;\n}\n.shortcut[_ngcontent-%COMP%]:hover {\n  background: color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.chip[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  padding: 6px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: 999px;\n  font-size: 12px;\n  color: var(--sa-text);\n  cursor: pointer;\n}\n.chip[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  margin: 0;\n  padding: 0;\n  width: auto;\n}\n.chip.active[_ngcontent-%COMP%] {\n  background: color-mix(in srgb, var(--sa-primary) 12%, transparent);\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n}\n.hint[_ngcontent-%COMP%] {\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin: 0;\n}\n.picker[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.picker-filter[_ngcontent-%COMP%] {\n  width: 100%;\n}\n.picker-list[_ngcontent-%COMP%] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  max-height: 280px;\n  overflow-y: auto;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  padding: 4px;\n}\n.picker-item[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  gap: var(--sa-space-2);\n  padding: 6px;\n  border-radius: var(--sa-radius-sm);\n  cursor: pointer;\n  transition: background 0.12s ease;\n}\n.picker-item[_ngcontent-%COMP%]:hover {\n  background: color-mix(in srgb, var(--sa-primary) 8%, transparent);\n}\n.picker-item[_ngcontent-%COMP%]   .thumbs[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 2px;\n  flex-shrink: 0;\n}\n.picker-item[_ngcontent-%COMP%]   .thumbs[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 36px;\n  height: 36px;\n  object-fit: cover;\n  border-radius: 4px;\n  background: var(--sa-bg);\n}\n.picker-item[_ngcontent-%COMP%]   .picker-item-name[_ngcontent-%COMP%] {\n  flex: 1;\n  min-width: 0;\n  font-size: 13px;\n}\n.picker-item[_ngcontent-%COMP%]   .picker-item-add[_ngcontent-%COMP%] {\n  color: var(--sa-primary);\n  font-weight: 700;\n  font-size: 16px;\n  padding: 0 6px;\n}\n.picker-empty[_ngcontent-%COMP%] {\n  padding: var(--sa-space-2);\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  text-align: center;\n}\n.exercise-list[_ngcontent-%COMP%] {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.exercise-row[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n  align-items: flex-start;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-md);\n  padding: var(--sa-space-2);\n  background: var(--sa-surface);\n  box-shadow: var(--sa-shadow-sm);\n}\n.thumbs[_ngcontent-%COMP%] {\n  display: flex;\n  gap: 4px;\n  flex-shrink: 0;\n}\n.thumbs[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  width: 56px;\n  height: 56px;\n  object-fit: cover;\n  border-radius: 6px;\n  background: var(--sa-bg);\n}\n.exercise-fields[_ngcontent-%COMP%] {\n  flex: 1 1 220px;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .exercise-name[_ngcontent-%COMP%] {\n  font-weight: 600;\n  font-size: 14px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .fields-row[_ngcontent-%COMP%] {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n}\n.exercise-fields[_ngcontent-%COMP%]   .fields-row[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n  flex: 1 1 80px;\n  min-width: 0;\n}\n.exercise-fields[_ngcontent-%COMP%]   .fields-row[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .notes-field[_ngcontent-%COMP%]   input[_ngcontent-%COMP%], \n.exercise-fields[_ngcontent-%COMP%]   .notes-field[_ngcontent-%COMP%]   select[_ngcontent-%COMP%] {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.exercise-fields[_ngcontent-%COMP%]   .technique-field[_ngcontent-%COMP%] {\n  position: relative;\n}\n.technique-list[_ngcontent-%COMP%] {\n  position: absolute;\n  z-index: 5;\n  top: calc(100% + 2px);\n  left: 0;\n  right: 0;\n  max-height: 220px;\n  overflow-y: auto;\n  margin: 0;\n  padding: 4px;\n  list-style: none;\n  background: var(--sa-surface);\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  box-shadow: var(--sa-shadow-md);\n}\n.technique-item[_ngcontent-%COMP%] {\n  padding: 6px 8px;\n  border-radius: var(--sa-radius-sm);\n  cursor: pointer;\n  display: flex;\n  flex-direction: column;\n  gap: 1px;\n}\n.technique-item[_ngcontent-%COMP%]:hover {\n  background: color-mix(in srgb, var(--sa-primary) 8%, transparent);\n}\n.technique-item[_ngcontent-%COMP%]   .technique-item-label[_ngcontent-%COMP%] {\n  font-size: 12.5px;\n  font-weight: 600;\n  color: var(--sa-text);\n}\n.technique-item[_ngcontent-%COMP%]   .technique-item-desc[_ngcontent-%COMP%] {\n  font-size: 11px;\n  color: var(--sa-text-muted);\n}\n.technique-item-none[_ngcontent-%COMP%] {\n  font-size: 12.5px;\n  color: var(--sa-text-muted);\n  font-style: italic;\n}\n.technique-empty[_ngcontent-%COMP%] {\n  padding: 6px 8px;\n  font-size: 12px;\n  color: var(--sa-text-muted);\n  text-align: center;\n}\n.remove[_ngcontent-%COMP%] {\n  border: none;\n  background: none;\n  color: var(--sa-danger);\n  font-size: 12px;\n  cursor: pointer;\n  white-space: nowrap;\n}\n.error[_ngcontent-%COMP%] {\n  color: var(--sa-danger);\n  font-size: 14px;\n}\n.actions[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: flex-end;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-3);\n}\nbutton.primary[_ngcontent-%COMP%] {\n  padding: 10px 18px;\n  border: none;\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-gradient);\n  color: #fff;\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  box-shadow: var(--sa-shadow-md);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\nbutton.primary[_ngcontent-%COMP%]:hover:not(:disabled) {\n  transform: translateY(-1px);\n  box-shadow: var(--sa-shadow-lg);\n}\nbutton.primary[_ngcontent-%COMP%]:disabled {\n  opacity: 0.6;\n  transform: none;\n}\nbutton.ghost[_ngcontent-%COMP%] {\n  padding: 10px 16px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-surface);\n  color: var(--sa-text);\n  font: inherit;\n  cursor: pointer;\n  transition: border-color 0.15s ease, background 0.15s ease;\n}\nbutton.ghost[_ngcontent-%COMP%]:hover:not(:disabled) {\n  border-color: var(--sa-primary);\n  background: color-mix(in srgb, var(--sa-primary) 5%, var(--sa-surface));\n}\nbutton.ghost[_ngcontent-%COMP%]:disabled {\n  opacity: 0.5;\n  cursor: default;\n}\n/*# sourceMappingURL=sheet-builder.component.css.map */"] });
 };
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(SheetBuilderComponent, [{
@@ -887,14 +981,31 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
                         <input type="text" [(ngModel)]="entry.rest" />
                       </label>
                     </div>
-                    <label class="notes-field">
+                    <label class="notes-field technique-field">
                       {{ t.technique }}
-                      <select [(ngModel)]="entry.technique">
-                        <option value="">{{ t.techniqueNone }}</option>
-                        @for (tech of techniques; track tech.value) {
-                          <option [value]="tech.value">{{ tech.label }}</option>
-                        }
-                      </select>
+                      <input
+                        type="text"
+                        [placeholder]="t.techniqueNone"
+                        [ngModel]="techniqueQueryValue(activeDayIndex(), entry.exerciseId, entry.technique)"
+                        (ngModelChange)="onTechniqueQuery(activeDayIndex(), entry.exerciseId, $event)"
+                        (focus)="onTechniqueFocus(activeDayIndex(), entry.exerciseId)"
+                        (blur)="onTechniqueBlur(activeDayIndex(), entry.exerciseId)"
+                      />
+                      @if (isTechniqueOpen(activeDayIndex(), entry.exerciseId)) {
+                        <ul class="technique-list">
+                          <li class="technique-item technique-item-none" (mousedown)="selectTechnique(activeDayIndex(), entry.exerciseId, '')">
+                            {{ t.techniqueNone }}
+                          </li>
+                          @for (tech of techniqueMatches(activeDayIndex(), entry.exerciseId); track tech.value) {
+                            <li class="technique-item" (mousedown)="selectTechnique(activeDayIndex(), entry.exerciseId, tech.value)">
+                              <span class="technique-item-label">{{ tech.label }}</span>
+                              <span class="technique-item-desc">{{ tech.description }}</span>
+                            </li>
+                          } @empty {
+                            <li class="technique-empty">{{ t.techniqueNoMatch }}</li>
+                          }
+                        </ul>
+                      }
                     </label>
                     <label class="notes-field">
                       {{ t.notes }}
@@ -933,7 +1044,7 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
     </div>
   }
 </div>
-`, styles: ["/* src/app/features/sheets/sheet-builder/sheet-builder.component.scss */\n.page {\n  max-width: 760px;\n  margin: 0 auto;\n  padding: var(--sa-space-4) var(--sa-space-3) var(--sa-space-5);\n}\n.back {\n  border: none;\n  background: none;\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-size: 14px;\n  cursor: pointer;\n  padding: 0;\n  margin-bottom: var(--sa-space-3);\n}\n.back:hover {\n  color: var(--sa-primary);\n}\nh1 {\n  font-size: 20px;\n  margin: 0 0 var(--sa-space-3);\n}\nlabel {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n}\ninput,\nselect {\n  font: inherit;\n  padding: 8px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  color: var(--sa-text);\n  background: var(--sa-surface);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\ninput:focus,\nselect:focus {\n  outline: none;\n  border-color: var(--sa-primary);\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.sheet-title,\n.days-count {\n  margin-bottom: var(--sa-space-3);\n  max-width: 320px;\n}\n.step-indicator {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin-bottom: var(--sa-space-3);\n}\n.step-dot {\n  width: 34px;\n  height: 34px;\n  flex-shrink: 0;\n  border-radius: 50%;\n  border: 1px solid var(--sa-border);\n  background: var(--sa-surface);\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.step-dot.done {\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n  background: color-mix(in srgb, var(--sa-primary) 10%, transparent);\n}\n.step-dot.active {\n  background: var(--sa-gradient);\n  border-color: transparent;\n  color: #fff;\n  box-shadow: var(--sa-shadow-md);\n  transform: scale(1.08);\n}\n.day-card {\n  background: var(--sa-surface);\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-lg);\n  padding: var(--sa-space-4);\n  margin-bottom: var(--sa-space-3);\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n  box-shadow: var(--sa-shadow-sm);\n}\n.day-step-title {\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--sa-primary-dark);\n  text-transform: uppercase;\n  letter-spacing: 0.03em;\n}\n.step-nav {\n  display: flex;\n  justify-content: space-between;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-2);\n  padding-top: var(--sa-space-2);\n  border-top: 1px solid var(--sa-border);\n}\n.day-label {\n  font-weight: 600;\n  font-size: 15px;\n  border: none;\n  border-bottom: 1px solid var(--sa-border);\n  border-radius: 0;\n  padding: 4px 0;\n}\n.mg-title {\n  display: block;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin-bottom: 6px;\n}\n.mg-chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.mg-shortcuts {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-bottom: 8px;\n}\n.shortcut {\n  padding: 6px 12px;\n  border: 1px solid var(--sa-primary);\n  border-radius: 999px;\n  background: color-mix(in srgb, var(--sa-primary) 6%, transparent);\n  color: var(--sa-primary-dark);\n  font: inherit;\n  font-size: 12px;\n  font-weight: 600;\n  cursor: pointer;\n}\n.shortcut:hover {\n  background: color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.chip {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  padding: 6px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: 999px;\n  font-size: 12px;\n  color: var(--sa-text);\n  cursor: pointer;\n}\n.chip input {\n  margin: 0;\n  padding: 0;\n  width: auto;\n}\n.chip.active {\n  background: color-mix(in srgb, var(--sa-primary) 12%, transparent);\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n}\n.hint {\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin: 0;\n}\n.picker {\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.picker-filter {\n  width: 100%;\n}\n.picker-list {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  max-height: 280px;\n  overflow-y: auto;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  padding: 4px;\n}\n.picker-item {\n  display: flex;\n  align-items: center;\n  gap: var(--sa-space-2);\n  padding: 6px;\n  border-radius: var(--sa-radius-sm);\n  cursor: pointer;\n  transition: background 0.12s ease;\n}\n.picker-item:hover {\n  background: color-mix(in srgb, var(--sa-primary) 8%, transparent);\n}\n.picker-item .thumbs {\n  display: flex;\n  gap: 2px;\n  flex-shrink: 0;\n}\n.picker-item .thumbs img {\n  width: 36px;\n  height: 36px;\n  object-fit: cover;\n  border-radius: 4px;\n  background: var(--sa-bg);\n}\n.picker-item .picker-item-name {\n  flex: 1;\n  min-width: 0;\n  font-size: 13px;\n}\n.picker-item .picker-item-add {\n  color: var(--sa-primary);\n  font-weight: 700;\n  font-size: 16px;\n  padding: 0 6px;\n}\n.picker-empty {\n  padding: var(--sa-space-2);\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  text-align: center;\n}\n.exercise-list {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.exercise-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n  align-items: flex-start;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-md);\n  padding: var(--sa-space-2);\n  background: var(--sa-surface);\n  box-shadow: var(--sa-shadow-sm);\n}\n.thumbs {\n  display: flex;\n  gap: 4px;\n  flex-shrink: 0;\n}\n.thumbs img {\n  width: 56px;\n  height: 56px;\n  object-fit: cover;\n  border-radius: 6px;\n  background: var(--sa-bg);\n}\n.exercise-fields {\n  flex: 1 1 220px;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n.exercise-fields .exercise-name {\n  font-weight: 600;\n  font-size: 14px;\n}\n.exercise-fields .fields-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n}\n.exercise-fields .fields-row label {\n  flex: 1 1 80px;\n  min-width: 0;\n}\n.exercise-fields .fields-row input {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.exercise-fields .notes-field input,\n.exercise-fields .notes-field select {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.remove {\n  border: none;\n  background: none;\n  color: var(--sa-danger);\n  font-size: 12px;\n  cursor: pointer;\n  white-space: nowrap;\n}\n.error {\n  color: var(--sa-danger);\n  font-size: 14px;\n}\n.actions {\n  display: flex;\n  justify-content: flex-end;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-3);\n}\nbutton.primary {\n  padding: 10px 18px;\n  border: none;\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-gradient);\n  color: #fff;\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  box-shadow: var(--sa-shadow-md);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\nbutton.primary:hover:not(:disabled) {\n  transform: translateY(-1px);\n  box-shadow: var(--sa-shadow-lg);\n}\nbutton.primary:disabled {\n  opacity: 0.6;\n  transform: none;\n}\nbutton.ghost {\n  padding: 10px 16px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-surface);\n  color: var(--sa-text);\n  font: inherit;\n  cursor: pointer;\n  transition: border-color 0.15s ease, background 0.15s ease;\n}\nbutton.ghost:hover:not(:disabled) {\n  border-color: var(--sa-primary);\n  background: color-mix(in srgb, var(--sa-primary) 5%, var(--sa-surface));\n}\nbutton.ghost:disabled {\n  opacity: 0.5;\n  cursor: default;\n}\n/*# sourceMappingURL=sheet-builder.component.css.map */\n"] }]
+`, styles: ["/* src/app/features/sheets/sheet-builder/sheet-builder.component.scss */\n.page {\n  max-width: 760px;\n  margin: 0 auto;\n  padding: var(--sa-space-4) var(--sa-space-3) var(--sa-space-5);\n}\n.back {\n  border: none;\n  background: none;\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-size: 14px;\n  cursor: pointer;\n  padding: 0;\n  margin-bottom: var(--sa-space-3);\n}\n.back:hover {\n  color: var(--sa-primary);\n}\nh1 {\n  font-size: 20px;\n  margin: 0 0 var(--sa-space-3);\n}\nlabel {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n}\ninput,\nselect {\n  font: inherit;\n  padding: 8px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  color: var(--sa-text);\n  background: var(--sa-surface);\n  transition: border-color 0.15s ease, box-shadow 0.15s ease;\n}\ninput:focus,\nselect:focus {\n  outline: none;\n  border-color: var(--sa-primary);\n  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.sheet-title,\n.days-count {\n  margin-bottom: var(--sa-space-3);\n  max-width: 320px;\n}\n.step-indicator {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin-bottom: var(--sa-space-3);\n}\n.step-dot {\n  width: 34px;\n  height: 34px;\n  flex-shrink: 0;\n  border-radius: 50%;\n  border: 1px solid var(--sa-border);\n  background: var(--sa-surface);\n  color: var(--sa-text-muted);\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\n.step-dot.done {\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n  background: color-mix(in srgb, var(--sa-primary) 10%, transparent);\n}\n.step-dot.active {\n  background: var(--sa-gradient);\n  border-color: transparent;\n  color: #fff;\n  box-shadow: var(--sa-shadow-md);\n  transform: scale(1.08);\n}\n.day-card {\n  background: var(--sa-surface);\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-lg);\n  padding: var(--sa-space-4);\n  margin-bottom: var(--sa-space-3);\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n  box-shadow: var(--sa-shadow-sm);\n}\n.day-step-title {\n  font-size: 13px;\n  font-weight: 600;\n  color: var(--sa-primary-dark);\n  text-transform: uppercase;\n  letter-spacing: 0.03em;\n}\n.step-nav {\n  display: flex;\n  justify-content: space-between;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-2);\n  padding-top: var(--sa-space-2);\n  border-top: 1px solid var(--sa-border);\n}\n.day-label {\n  font-weight: 600;\n  font-size: 15px;\n  border: none;\n  border-bottom: 1px solid var(--sa-border);\n  border-radius: 0;\n  padding: 4px 0;\n}\n.mg-title {\n  display: block;\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin-bottom: 6px;\n}\n.mg-chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n}\n.mg-shortcuts {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-bottom: 8px;\n}\n.shortcut {\n  padding: 6px 12px;\n  border: 1px solid var(--sa-primary);\n  border-radius: 999px;\n  background: color-mix(in srgb, var(--sa-primary) 6%, transparent);\n  color: var(--sa-primary-dark);\n  font: inherit;\n  font-size: 12px;\n  font-weight: 600;\n  cursor: pointer;\n}\n.shortcut:hover {\n  background: color-mix(in srgb, var(--sa-primary) 15%, transparent);\n}\n.chip {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  padding: 6px 10px;\n  border: 1px solid var(--sa-border);\n  border-radius: 999px;\n  font-size: 12px;\n  color: var(--sa-text);\n  cursor: pointer;\n}\n.chip input {\n  margin: 0;\n  padding: 0;\n  width: auto;\n}\n.chip.active {\n  background: color-mix(in srgb, var(--sa-primary) 12%, transparent);\n  border-color: var(--sa-primary);\n  color: var(--sa-primary-dark);\n}\n.hint {\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  margin: 0;\n}\n.picker {\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.picker-filter {\n  width: 100%;\n}\n.picker-list {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n  max-height: 280px;\n  overflow-y: auto;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  padding: 4px;\n}\n.picker-item {\n  display: flex;\n  align-items: center;\n  gap: var(--sa-space-2);\n  padding: 6px;\n  border-radius: var(--sa-radius-sm);\n  cursor: pointer;\n  transition: background 0.12s ease;\n}\n.picker-item:hover {\n  background: color-mix(in srgb, var(--sa-primary) 8%, transparent);\n}\n.picker-item .thumbs {\n  display: flex;\n  gap: 2px;\n  flex-shrink: 0;\n}\n.picker-item .thumbs img {\n  width: 36px;\n  height: 36px;\n  object-fit: cover;\n  border-radius: 4px;\n  background: var(--sa-bg);\n}\n.picker-item .picker-item-name {\n  flex: 1;\n  min-width: 0;\n  font-size: 13px;\n}\n.picker-item .picker-item-add {\n  color: var(--sa-primary);\n  font-weight: 700;\n  font-size: 16px;\n  padding: 0 6px;\n}\n.picker-empty {\n  padding: var(--sa-space-2);\n  font-size: 13px;\n  color: var(--sa-text-muted);\n  text-align: center;\n}\n.exercise-list {\n  list-style: none;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  flex-direction: column;\n  gap: var(--sa-space-2);\n}\n.exercise-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n  align-items: flex-start;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-md);\n  padding: var(--sa-space-2);\n  background: var(--sa-surface);\n  box-shadow: var(--sa-shadow-sm);\n}\n.thumbs {\n  display: flex;\n  gap: 4px;\n  flex-shrink: 0;\n}\n.thumbs img {\n  width: 56px;\n  height: 56px;\n  object-fit: cover;\n  border-radius: 6px;\n  background: var(--sa-bg);\n}\n.exercise-fields {\n  flex: 1 1 220px;\n  min-width: 0;\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n}\n.exercise-fields .exercise-name {\n  font-weight: 600;\n  font-size: 14px;\n}\n.exercise-fields .fields-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: var(--sa-space-2);\n}\n.exercise-fields .fields-row label {\n  flex: 1 1 80px;\n  min-width: 0;\n}\n.exercise-fields .fields-row input {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.exercise-fields .notes-field input,\n.exercise-fields .notes-field select {\n  width: 100%;\n  min-width: 0;\n  padding: 6px 8px;\n}\n.exercise-fields .technique-field {\n  position: relative;\n}\n.technique-list {\n  position: absolute;\n  z-index: 5;\n  top: calc(100% + 2px);\n  left: 0;\n  right: 0;\n  max-height: 220px;\n  overflow-y: auto;\n  margin: 0;\n  padding: 4px;\n  list-style: none;\n  background: var(--sa-surface);\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  box-shadow: var(--sa-shadow-md);\n}\n.technique-item {\n  padding: 6px 8px;\n  border-radius: var(--sa-radius-sm);\n  cursor: pointer;\n  display: flex;\n  flex-direction: column;\n  gap: 1px;\n}\n.technique-item:hover {\n  background: color-mix(in srgb, var(--sa-primary) 8%, transparent);\n}\n.technique-item .technique-item-label {\n  font-size: 12.5px;\n  font-weight: 600;\n  color: var(--sa-text);\n}\n.technique-item .technique-item-desc {\n  font-size: 11px;\n  color: var(--sa-text-muted);\n}\n.technique-item-none {\n  font-size: 12.5px;\n  color: var(--sa-text-muted);\n  font-style: italic;\n}\n.technique-empty {\n  padding: 6px 8px;\n  font-size: 12px;\n  color: var(--sa-text-muted);\n  text-align: center;\n}\n.remove {\n  border: none;\n  background: none;\n  color: var(--sa-danger);\n  font-size: 12px;\n  cursor: pointer;\n  white-space: nowrap;\n}\n.error {\n  color: var(--sa-danger);\n  font-size: 14px;\n}\n.actions {\n  display: flex;\n  justify-content: flex-end;\n  gap: var(--sa-space-2);\n  margin-top: var(--sa-space-3);\n}\nbutton.primary {\n  padding: 10px 18px;\n  border: none;\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-gradient);\n  color: #fff;\n  font: inherit;\n  font-weight: 700;\n  cursor: pointer;\n  box-shadow: var(--sa-shadow-md);\n  transition: transform 0.15s ease, box-shadow 0.15s ease;\n}\nbutton.primary:hover:not(:disabled) {\n  transform: translateY(-1px);\n  box-shadow: var(--sa-shadow-lg);\n}\nbutton.primary:disabled {\n  opacity: 0.6;\n  transform: none;\n}\nbutton.ghost {\n  padding: 10px 16px;\n  border: 1px solid var(--sa-border);\n  border-radius: var(--sa-radius-sm);\n  background: var(--sa-surface);\n  color: var(--sa-text);\n  font: inherit;\n  cursor: pointer;\n  transition: border-color 0.15s ease, background 0.15s ease;\n}\nbutton.ghost:hover:not(:disabled) {\n  border-color: var(--sa-primary);\n  background: color-mix(in srgb, var(--sa-primary) 5%, var(--sa-surface));\n}\nbutton.ghost:disabled {\n  opacity: 0.5;\n  cursor: default;\n}\n/*# sourceMappingURL=sheet-builder.component.css.map */\n"] }]
   }], () => [{ type: ActivatedRoute }, { type: Router }, { type: DataService }, { type: ExerciseLibraryService }], null);
 })();
 (() => {
@@ -942,4 +1053,4 @@ var SheetBuilderComponent = class _SheetBuilderComponent {
 export {
   SheetBuilderComponent
 };
-//# sourceMappingURL=chunk-R4DN6MVW.js.map
+//# sourceMappingURL=chunk-MOVQQCM5.js.map

@@ -3,7 +3,7 @@ import {
   __async,
   setClassMetadata,
   ɵɵdefineInjectable
-} from "./chunk-BQNJQGMQ.js";
+} from "./chunk-Q4IH74E4.js";
 
 // src/app/core/services/exercise-library.service.ts
 var ExerciseLibraryService = class _ExerciseLibraryService {
@@ -170,4 +170,4 @@ export {
   UPPER_BODY_GROUPS,
   LOWER_BODY_GROUPS
 };
-//# sourceMappingURL=chunk-564HYZGK.js.map
+//# sourceMappingURL=chunk-L4GHQBDP.js.map

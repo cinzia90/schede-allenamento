@@ -1,7 +1,7 @@
 // src/app/core/i18n/it.ts
 var it = {
   login: {
-    title: "Schede Allenamento",
+    title: "Vigor",
     email: "Email",
     password: "Password",
     submit: "Accedi",
@@ -54,6 +54,7 @@ var it = {
     rest: "Recupero",
     technique: "Tecnica",
     techniqueNone: "Nessuna",
+    techniqueNoMatch: "Nessuna tecnica trovata.",
     notes: "Note",
     removeExercise: "Rimuovi",
     save: "Salva scheda",
@@ -67,4 +68,4 @@ var it = {
 export {
   it
 };
-//# sourceMappingURL=chunk-RJQGLTWD.js.map
+//# sourceMappingURL=chunk-BQJ4SSXP.js.map

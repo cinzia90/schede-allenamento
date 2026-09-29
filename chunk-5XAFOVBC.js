@@ -7,13 +7,13 @@ import {
   NgModel,
   RequiredValidator,
   ɵNgNoValidate
-} from "./chunk-L6TH5YE7.js";
+} from "./chunk-CH3AVVHT.js";
 import {
   DataService
-} from "./chunk-TTYTNCN5.js";
+} from "./chunk-BB27IXKD.js";
 import {
   it
-} from "./chunk-RJQGLTWD.js";
+} from "./chunk-BQJ4SSXP.js";
 import {
   AuthService,
   CommonModule,
@@ -46,7 +46,7 @@ import {
   ɵɵtwoWayBindingSet,
   ɵɵtwoWayListener,
   ɵɵtwoWayProperty
-} from "./chunk-BQNJQGMQ.js";
+} from "./chunk-Q4IH74E4.js";
 
 // src/app/features/clients/client-list/client-list.component.ts
 var _forTrack0 = ($index, $item) => $item.id;
@@ -275,4 +275,4 @@ var ClientListComponent = class _ClientListComponent {
 export {
   ClientListComponent
 };
-//# sourceMappingURL=chunk-MVCT6A2T.js.map
+//# sourceMappingURL=chunk-5XAFOVBC.js.map

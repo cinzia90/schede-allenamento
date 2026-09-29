@@ -2,7 +2,7 @@ import {
   MUSCLE_GROUPS,
   TRAINING_TECHNIQUES,
   exerciseImageUrl
-} from "./chunk-564HYZGK.js";
+} from "./chunk-L4GHQBDP.js";
 import {
   Injectable,
   __async,
@@ -10,7 +10,7 @@ import {
   __toESM,
   setClassMetadata,
   ɵɵdefineInjectable
-} from "./chunk-BQNJQGMQ.js";
+} from "./chunk-Q4IH74E4.js";
 
 // node_modules/pako/lib/utils/common.js
 var require_common = __commonJS({
@@ -18822,7 +18822,7 @@ var PdfExportService = class _PdfExportService {
   }
   drawHeader(page, font, fontBold, client, sheet, y) {
     this.drawLogo(page, MARGIN, y - 26);
-    page.drawText("SCHEDE ALLENAMENTO", { x: MARGIN + 34, y: y - 16, size: 13, font: fontBold, color: PRIMARY });
+    page.drawText("VIGOR", { x: MARGIN + 34, y: y - 16, size: 15, font: fontBold, color: PRIMARY });
     const coachLabel = "Coach: Cinzia Rosato";
     const coachWidth = font.widthOfTextAtSize(coachLabel, 10);
     page.drawText(coachLabel, { x: PAGE_WIDTH - MARGIN - coachWidth, y: y - 16, size: 10, font, color: TEXT_MUTED });
@@ -18983,4 +18983,4 @@ tslib/tslib.es6.js:
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
 */
-//# sourceMappingURL=chunk-CKEB6ORU.js.map
+//# sourceMappingURL=chunk-GWGPZ2QV.js.map
