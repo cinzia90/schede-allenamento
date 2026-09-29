@@ -13,7 +13,7 @@ interface DayState {
   muscleGroups: string[];
   exercises: WorkoutExerciseEntry[];
   availableExercises: Exercise[];
-  pickerExerciseId: string;
+  filterText: string;
 }
 
 @Component({
@@ -75,7 +75,7 @@ export class SheetBuilderComponent {
       muscleGroups: [...day.muscleGroups],
       exercises: day.exercises.map((e) => ({ ...e })),
       availableExercises: this.computeAvailable(day.muscleGroups),
-      pickerExerciseId: '',
+      filterText: '',
     };
   }
 
@@ -102,7 +102,7 @@ export class SheetBuilderComponent {
           muscleGroups: [],
           exercises: [],
           availableExercises: [],
-          pickerExerciseId: '',
+          filterText: '',
         },
       );
     }
@@ -127,16 +127,38 @@ export class SheetBuilderComponent {
     });
   }
 
-  addExercise(dayIndex: number): void {
+  addExercise(dayIndex: number, exerciseId: string): void {
     this.days.update((days) => {
       const day = days[dayIndex];
-      if (!day.pickerExerciseId || day.exercises.some((e) => e.exerciseId === day.pickerExerciseId)) {
+      if (day.exercises.some((e) => e.exerciseId === exerciseId)) {
         return days;
       }
-      const entry: WorkoutExerciseEntry = { exerciseId: day.pickerExerciseId, sets: 3, reps: '10', rest: '60s', notes: '' };
+      const entry: WorkoutExerciseEntry = { exerciseId, sets: 3, reps: '10', rest: '60s', notes: '' };
       const copy = [...days];
-      copy[dayIndex] = { ...day, exercises: [...day.exercises, entry], pickerExerciseId: '' };
+      copy[dayIndex] = { ...day, exercises: [...day.exercises, entry] };
       return copy;
+    });
+  }
+
+  setFilterText(dayIndex: number, text: string): void {
+    this.days.update((days) => {
+      const copy = [...days];
+      copy[dayIndex] = { ...copy[dayIndex], filterText: text };
+      return copy;
+    });
+  }
+
+  pickableExercises(day: DayState): Exercise[] {
+    const addedIds = new Set(day.exercises.map((e) => e.exerciseId));
+    const term = day.filterText.trim().toLowerCase();
+    return day.availableExercises.filter((ex) => {
+      if (addedIds.has(ex.id)) {
+        return false;
+      }
+      if (!term) {
+        return true;
+      }
+      return exerciseDisplayName(ex).toLowerCase().includes(term);
     });
   }
 

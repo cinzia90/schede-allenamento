@@ -38,13 +38,28 @@
           <p class="hint">{{ t.noMuscleGroupsYet }}</p>
         } @else {
           <div class="picker">
-            <select [ngModel]="day.pickerExerciseId" (ngModelChange)="day.pickerExerciseId = $event">
-              <option value="">{{ t.chooseExercise }}</option>
-              @for (ex of day.availableExercises; track ex.id) {
-                <option [value]="ex.id">{{ exerciseDisplayName(ex) }}</option>
+            <input
+              type="search"
+              class="picker-filter"
+              [placeholder]="t.chooseExercise"
+              [ngModel]="day.filterText"
+              (ngModelChange)="setFilterText($index, $event)"
+            />
+            <ul class="picker-list">
+              @for (ex of pickableExercises(day); track ex.id) {
+                <li class="picker-item" (click)="addExercise($index, ex.id)">
+                  <div class="thumbs">
+                    @for (img of ex.images.slice(0, 2); track img) {
+                      <img [src]="exerciseImageUrl(img)" [alt]="ex.name" loading="lazy" />
+                    }
+                  </div>
+                  <span class="picker-item-name">{{ exerciseDisplayName(ex) }}</span>
+                  <span class="picker-item-add">+</span>
+                </li>
+              } @empty {
+                <li class="picker-empty">{{ t.noExercisesMatch }}</li>
               }
-            </select>
-            <button type="button" class="ghost" (click)="addExercise($index)">{{ t.addExercise }}</button>
+            </ul>
           </div>
         }
 
