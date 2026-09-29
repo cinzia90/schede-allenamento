@@ -120,6 +120,15 @@
                       </label>
                     </div>
                     <label class="notes-field">
+                      {{ t.technique }}
+                      <select [(ngModel)]="entry.technique">
+                        <option value="">{{ t.techniqueNone }}</option>
+                        @for (tech of techniques; track tech.value) {
+                          <option [value]="tech.value">{{ tech.label }}</option>
+                        }
+                      </select>
+                    </label>
+                    <label class="notes-field">
                       {{ t.notes }}
                       <input type="text" [(ngModel)]="entry.notes" />
                     </label>

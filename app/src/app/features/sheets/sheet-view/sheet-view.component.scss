@@ -107,6 +107,16 @@
     color: var(--sa-text-muted);
   }
 
+  .exercise-technique {
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--sa-primary-dark);
+    background: color-mix(in srgb, var(--sa-primary) 12%, transparent);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+
   .exercise-notes {
     font-size: 12px;
     color: var(--sa-text-muted);

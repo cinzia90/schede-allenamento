@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../core/services/data.service';
 import { ExerciseLibraryService } from '../../../core/services/exercise-library.service';
 import { PdfExportService } from '../../../core/services/pdf-export.service';
-import { Client, WorkoutSheet } from '../../../shared/models/client.model';
+import { Client, TRAINING_TECHNIQUES, WorkoutSheet } from '../../../shared/models/client.model';
 import { Exercise, exerciseDisplayName, exerciseImageUrl } from '../../../shared/models/exercise.model';
 import { it } from '../../../core/i18n/it';
 
@@ -52,6 +52,13 @@ export class SheetViewComponent {
 
   exerciseOf(id: string): Exercise | undefined {
     return this.exerciseById.get(id);
+  }
+
+  techniqueLabel(value: string): string | null {
+    if (!value) {
+      return null;
+    }
+    return TRAINING_TECHNIQUES.find((t) => t.value === value)?.label ?? null;
   }
 
   back(): void {

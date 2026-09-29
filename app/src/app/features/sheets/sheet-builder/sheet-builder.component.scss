@@ -316,7 +316,8 @@ select {
     }
   }
 
-  .notes-field input {
+  .notes-field input,
+  .notes-field select {
     width: 100%;
     min-width: 0;
     padding: 6px 8px;

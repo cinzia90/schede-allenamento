@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../core/services/data.service';
 import { ExerciseLibraryService } from '../../../core/services/exercise-library.service';
-import { WorkoutDay, WorkoutExerciseEntry } from '../../../shared/models/client.model';
+import { TRAINING_TECHNIQUES, WorkoutDay, WorkoutExerciseEntry } from '../../../shared/models/client.model';
 import {
   Exercise,
   LOWER_BODY_GROUPS,
@@ -33,6 +33,7 @@ interface DayState {
 export class SheetBuilderComponent {
   readonly t = it.sheetBuilder;
   readonly muscleGroups = MUSCLE_GROUPS;
+  readonly techniques = TRAINING_TECHNIQUES;
   readonly dayCountOptions = [1, 2, 3, 4, 5, 6, 7];
   readonly exerciseImageUrl = exerciseImageUrl;
   readonly exerciseDisplayName = exerciseDisplayName;
@@ -162,7 +163,7 @@ export class SheetBuilderComponent {
       if (day.exercises.some((e) => e.exerciseId === exerciseId)) {
         return days;
       }
-      const entry: WorkoutExerciseEntry = { exerciseId, sets: 3, reps: '10', rest: '60s', notes: '' };
+      const entry: WorkoutExerciseEntry = { exerciseId, sets: 3, reps: '10', rest: '60s', notes: '', technique: '' };
       const copy = [...days];
       copy[dayIndex] = { ...day, exercises: [...day.exercises, entry] };
       return copy;

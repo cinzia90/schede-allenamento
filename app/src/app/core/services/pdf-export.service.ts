@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PDFDocument, PDFFont, PDFImage, PDFPage, StandardFonts, rgb } from 'pdf-lib';
-import { Client, WorkoutSheet } from '../../shared/models/client.model';
+import { Client, TRAINING_TECHNIQUES, WorkoutDay, WorkoutSheet } from '../../shared/models/client.model';
 import { Exercise, MUSCLE_GROUPS, exerciseImageUrl } from '../../shared/models/exercise.model';
 
 const PAGE_WIDTH = 595;
@@ -35,6 +35,21 @@ const COLUMNS: Column[] = [
 ];
 
 const muscleGroupLabel = (value: string): string => MUSCLE_GROUPS.find((mg) => mg.value === value)?.label ?? value;
+const techniqueLabel = (value: string): string | null => (value ? TRAINING_TECHNIQUES.find((t) => t.value === value)?.label ?? null : null);
+
+// Titolo del giorno basato sui muscoli davvero coinvolti dagli esercizi
+// scelti (non sui filtri usati per cercarli, che possono essere piu' ampi).
+function summarizeMuscles(day: WorkoutDay, exercisesById: Map<string, Exercise>): string {
+  const values = new Set<string>();
+  for (const entry of day.exercises) {
+    const exercise = exercisesById.get(entry.exerciseId);
+    exercise?.primaryMuscles.forEach((m) => values.add(m));
+  }
+  if (values.size === 0) {
+    return day.muscleGroups.map(muscleGroupLabel).join(', ');
+  }
+  return [...values].map(muscleGroupLabel).join(', ');
+}
 
 @Injectable({ providedIn: 'root' })
 export class PdfExportService {
@@ -71,7 +86,7 @@ export class PdfExportService {
 
     for (const day of sheet.days) {
       ensureSpace(50);
-      const muscleSummary = day.muscleGroups.map(muscleGroupLabel).join(', ');
+      const muscleSummary = summarizeMuscles(day, exercisesById);
       const dayTitle = muscleSummary ? `${day.label} — ${muscleSummary}` : day.label;
       page.drawRectangle({ x: MARGIN, y: y - 20, width: CONTENT_WIDTH, height: 22, color: PRIMARY });
       page.drawText(dayTitle.toUpperCase(), { x: MARGIN + 8, y: y - 15, size: 10.5, font: fontBold, color: rgb(1, 1, 1) });
@@ -89,12 +104,13 @@ export class PdfExportService {
         const nameEn = exercise?.name ?? entry.exerciseId;
         const nameIt = exercise?.nameIt ?? null;
 
-        const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes);
+        const technique = techniqueLabel(entry.technique);
+        const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes, !!technique);
         const setRowHeight = 20;
 
         ensureSpace(headerHeight + 18 + setRowHeight);
 
-        y = this.drawExerciseHeader(page, font, fontBold, fontItalic, y, headerHeight, images, nameEn, nameIt, entry.notes);
+        y = this.drawExerciseHeader(page, font, fontBold, fontItalic, y, headerHeight, images, nameEn, nameIt, technique, entry.notes);
         y = this.drawColumnHeader(page, fontBold, y);
 
         for (let setIndex = 1; setIndex <= entry.sets; setIndex++) {
@@ -138,9 +154,12 @@ export class PdfExportService {
     page.drawEllipse({ x: x + 27, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
   }
 
-  private exerciseHeaderHeight(hasImages: boolean, hasNotes: boolean): number {
+  private exerciseHeaderHeight(hasImages: boolean, hasNotes: boolean, hasTechnique: boolean): number {
     let h = hasImages ? IMAGE_SIZE + 8 : 22;
     if (hasNotes) {
+      h += 12;
+    }
+    if (hasTechnique) {
       h += 12;
     }
     return h;
@@ -156,6 +175,7 @@ export class PdfExportService {
     images: PDFImage[],
     nameEn: string,
     nameIt: string | null,
+    technique: string | null,
     notes: string,
   ): number {
     page.drawRectangle({ x: MARGIN, y: y - height, width: CONTENT_WIDTH, height, borderColor: BORDER, borderWidth: 0.5, color: PRIMARY_TINT });
@@ -168,14 +188,21 @@ export class PdfExportService {
     }
 
     const textMaxWidth = MARGIN + CONTENT_WIDTH - textX - 8;
+    const extraLines = (technique ? 1 : 0) + (notes ? 1 : 0);
     const label = nameIt ? `${nameEn}  —  ${nameIt}` : nameEn;
     const truncated = this.truncateToWidth(label, fontBold, 10, textMaxWidth);
-    const nameY = notes ? y - height / 2 : y - height / 2 - 3;
-    page.drawText(truncated, { x: textX, y: nameY, size: 10, font: fontBold, color: TEXT_DARK });
+    let lineY = extraLines > 0 ? y - height / 2 + (extraLines * 12) / 2 : y - height / 2 - 3;
+    page.drawText(truncated, { x: textX, y: lineY, size: 10, font: fontBold, color: TEXT_DARK });
+
+    if (technique) {
+      lineY -= 13;
+      page.drawText(`Tecnica: ${technique}`, { x: textX, y: lineY, size: 8, font: fontBold, color: PRIMARY });
+    }
 
     if (notes) {
+      lineY -= 13;
       const truncatedNotes = this.truncateToWidth(notes, fontItalic, 8, textMaxWidth);
-      page.drawText(truncatedNotes, { x: textX, y: nameY - 13, size: 8, font: fontItalic, color: TEXT_MUTED });
+      page.drawText(truncatedNotes, { x: textX, y: lineY, size: 8, font: fontItalic, color: TEXT_MUTED });
     }
 
     return y - height;

@@ -49,6 +49,8 @@ export const it = {
     sets: 'Serie',
     reps: 'Ripetizioni',
     rest: 'Recupero',
+    technique: 'Tecnica',
+    techniqueNone: 'Nessuna',
     notes: 'Note',
     removeExercise: 'Rimuovi',
     save: 'Salva scheda',
