@@ -38,6 +38,9 @@ var it = {
     sheetTitlePlaceholder: "Es. Scheda Gennaio 2026",
     daysCount: "Numero di giorni di allenamento",
     dayLabel: "Giorno",
+    dayStepOf: "di",
+    stepBack: "\u2190 Giorno precedente",
+    stepNext: "Giorno successivo \u2192",
     dayLabelPlaceholder: "Es. Petto e Tricipiti",
     muscleGroups: "Gruppi muscolari",
     chooseExercise: "Cerca un esercizio\u2026",
@@ -58,4 +61,4 @@ var it = {
 export {
   it
 };
-//# sourceMappingURL=chunk-XOIFB2E7.js.map
+//# sourceMappingURL=chunk-ICMLJ3WR.js.map
