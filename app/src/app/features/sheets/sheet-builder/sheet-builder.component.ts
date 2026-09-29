@@ -36,6 +36,7 @@ export class SheetBuilderComponent {
   readonly loading = signal(true);
   readonly errorMessage = signal<string | null>(null);
   readonly isEdit = signal(false);
+  readonly activeDayIndex = signal(0);
 
   private clientId = '';
   private sheetId: string | null = null;
@@ -66,6 +67,7 @@ export class SheetBuilderComponent {
     } else {
       this.setDaysCount(1);
     }
+    this.activeDayIndex.set(0);
     this.loading.set(false);
   }
 
@@ -111,6 +113,17 @@ export class SheetBuilderComponent {
 
   onDaysCountChange(value: string): void {
     this.setDaysCount(Number(value));
+    if (this.activeDayIndex() >= this.daysCount) {
+      this.activeDayIndex.set(this.daysCount - 1);
+    }
+  }
+
+  setActiveDay(dayIndex: number): void {
+    this.activeDayIndex.set(dayIndex);
+  }
+
+  dayStepLabel(): string {
+    return `${this.t.dayLabel} ${this.activeDayIndex() + 1} ${this.t.dayStepOf} ${this.daysCount}`;
   }
 
   toggleMuscleGroup(dayIndex: number, group: string): void {

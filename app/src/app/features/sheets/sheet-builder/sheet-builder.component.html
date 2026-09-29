@@ -18,16 +18,42 @@
       </select>
     </label>
 
-    @for (day of days(); track $index) {
+    <div class="step-indicator">
+      @for (day of days(); track $index) {
+        <button
+          type="button"
+          class="step-dot"
+          [class.active]="activeDayIndex() === $index"
+          [class.done]="day.exercises.length > 0"
+          (click)="setActiveDay($index)"
+        >
+          {{ $index + 1 }}
+        </button>
+      }
+    </div>
+
+    @if (days()[activeDayIndex()]; as day) {
       <section class="day-card">
-        <input type="text" class="day-label" [placeholder]="t.dayLabelPlaceholder" [ngModel]="day.label" (ngModelChange)="updateDayLabel($index, $event)" />
+        <div class="day-step-title">{{ dayStepLabel() }}</div>
+
+        <input
+          type="text"
+          class="day-label"
+          [placeholder]="t.dayLabelPlaceholder"
+          [ngModel]="day.label"
+          (ngModelChange)="updateDayLabel(activeDayIndex(), $event)"
+        />
 
         <div class="muscle-groups">
           <span class="mg-title">{{ t.muscleGroups }}</span>
           <div class="mg-chips">
             @for (mg of muscleGroups; track mg.value) {
               <label class="chip" [class.active]="day.muscleGroups.includes(mg.value)">
-                <input type="checkbox" [checked]="day.muscleGroups.includes(mg.value)" (change)="toggleMuscleGroup($index, mg.value)" />
+                <input
+                  type="checkbox"
+                  [checked]="day.muscleGroups.includes(mg.value)"
+                  (change)="toggleMuscleGroup(activeDayIndex(), mg.value)"
+                />
                 {{ mg.label }}
               </label>
             }
@@ -43,11 +69,11 @@
               class="picker-filter"
               [placeholder]="t.chooseExercise"
               [ngModel]="day.filterText"
-              (ngModelChange)="setFilterText($index, $event)"
+              (ngModelChange)="setFilterText(activeDayIndex(), $event)"
             />
             <ul class="picker-list">
               @for (ex of pickableExercises(day); track ex.id) {
-                <li class="picker-item" (click)="addExercise($index, ex.id)">
+                <li class="picker-item" (click)="addExercise(activeDayIndex(), ex.id)">
                   <div class="thumbs">
                     @for (img of ex.images.slice(0, 2); track img) {
                       <img [src]="exerciseImageUrl(img)" [alt]="ex.name" loading="lazy" />
@@ -94,12 +120,23 @@
                       <input type="text" [(ngModel)]="entry.notes" />
                     </label>
                   </div>
-                  <button type="button" class="remove" (click)="removeExercise($index, entry.exerciseId)">{{ t.removeExercise }}</button>
+                  <button type="button" class="remove" (click)="removeExercise(activeDayIndex(), entry.exerciseId)">{{ t.removeExercise }}</button>
                 }
               </li>
             }
           </ul>
         }
+
+        <div class="step-nav">
+          <button type="button" class="ghost" [disabled]="activeDayIndex() === 0" (click)="setActiveDay(activeDayIndex() - 1)">
+            {{ t.stepBack }}
+          </button>
+          @if (activeDayIndex() < daysCount - 1) {
+            <button type="button" class="primary" (click)="setActiveDay(activeDayIndex() + 1)">
+              {{ t.stepNext }}
+            </button>
+          }
+        </div>
       </section>
     }
 
