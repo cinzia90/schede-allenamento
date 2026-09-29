@@ -14,6 +14,7 @@ const IMAGE_SIZE = 28;
 // e le intestazioni. Il PDF e' generato interamente lato client con pdf-lib:
 // nessuno screenshot, e' una vera tabella disegnata punto per punto.
 const PRIMARY = rgb(0x4f / 255, 0x46 / 255, 0xe5 / 255);
+const ACCENT = rgb(0x0f / 255, 0xb8 / 255, 0xb0 / 255);
 const PRIMARY_TINT = rgb(0.94, 0.93, 0.99);
 const TEXT_DARK = rgb(0.1, 0.1, 0.15);
 const TEXT_MUTED = rgb(0.4, 0.4, 0.45);
@@ -130,8 +131,8 @@ export class PdfExportService {
   }
 
   private drawHeader(page: PDFPage, font: PDFFont, fontBold: PDFFont, client: Client, sheet: WorkoutSheet, y: number): number {
-    this.drawLogo(page, MARGIN, y - 26);
-    page.drawText('VIGOR', { x: MARGIN + 34, y: y - 16, size: 15, font: fontBold, color: PRIMARY });
+    this.drawLogo(page, MARGIN, y - 24);
+    page.drawText('VIGOR', { x: MARGIN + 40, y: y - 16, size: 16, font: fontBold, color: PRIMARY });
 
     // Nome del coach: fisso per ora (un solo account trainer nell'app).
     const coachLabel = 'Coach: Cinzia Rosato';
@@ -150,14 +151,34 @@ export class PdfExportService {
     return y;
   }
 
-  // Manubrio stilizzato: due dischi collegati da una barra, colore primario dell'app.
+  // Stesso manubrio dell'icona dell'app (public/icon-dumbbell.svg, viewBox
+  // 64x64), riportato qui con rettangoli arrotondati cosi' il logo e'
+  // identico e ben leggibile anche stampato. x = bordo sinistro,
+  // y = centro verticale dell'icona.
   private drawLogo(page: PDFPage, x: number, y: number): void {
-    const barY = y;
-    page.drawRectangle({ x: x + 6, y: barY - 2, width: 16, height: 4, color: PRIMARY });
-    page.drawEllipse({ x: x + 4, y: barY, xScale: 4, yScale: 9, color: PRIMARY });
-    page.drawEllipse({ x: x + 24, y: barY, xScale: 4, yScale: 9, color: PRIMARY });
-    page.drawEllipse({ x: x + 1, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
-    page.drawEllipse({ x: x + 27, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
+    const scale = 0.62;
+    const sx = (svgX: number) => x + (svgX - 4) * scale;
+    const sy = (svgYBottom: number) => y + (32 - svgYBottom) * scale;
+
+    const rect = (svgX: number, svgYTop: number, w: number, h: number, color: typeof PRIMARY) => {
+      page.drawRectangle({
+        x: sx(svgX),
+        y: sy(svgYTop + h),
+        width: w * scale,
+        height: h * scale,
+        color,
+      });
+    };
+
+    // barra centrale (meta' indaco, meta' teal)
+    rect(20, 28, 12, 8, PRIMARY);
+    rect(32, 28, 12, 8, ACCENT);
+    // dischi sinistri (indaco)
+    rect(9, 15, 9, 34, PRIMARY);
+    rect(4, 22, 5, 20, PRIMARY);
+    // dischi destri (teal)
+    rect(46, 15, 9, 34, ACCENT);
+    rect(55, 22, 5, 20, ACCENT);
   }
 
   private exerciseHeaderHeight(hasImages: boolean, hasNotes: boolean, hasTechnique: boolean): number {
