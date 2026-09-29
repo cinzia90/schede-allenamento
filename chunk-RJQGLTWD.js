@@ -29,7 +29,9 @@ var it = {
     delete: "Elimina",
     deleteConfirm: "Eliminare questa scheda? Non si pu\xF2 annullare.",
     download: "Scarica PDF",
-    createdOn: "Creata il"
+    createdOn: "Creata il",
+    staleBadge: "\u26A0 Oltre 30 giorni",
+    staleWarning: "Questa scheda ha pi\xF9 di 30 giorni: valuta se aggiornarla."
   },
   sheetBuilder: {
     titleNew: "Nuova scheda",
@@ -65,4 +67,4 @@ var it = {
 export {
   it
 };
-//# sourceMappingURL=chunk-XVYSBFXJ.js.map
+//# sourceMappingURL=chunk-RJQGLTWD.js.map

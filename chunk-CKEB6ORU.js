@@ -2,7 +2,7 @@ import {
   MUSCLE_GROUPS,
   TRAINING_TECHNIQUES,
   exerciseImageUrl
-} from "./chunk-ZPJJWAEE.js";
+} from "./chunk-564HYZGK.js";
 import {
   Injectable,
   __async,
@@ -18742,7 +18742,7 @@ var COLUMNS = [
   ...Array.from({ length: WEEK_COLUMNS }, (_, i) => ({ label: `Sett. ${i + 1}`, width: 73 }))
 ];
 var muscleGroupLabel = (value) => MUSCLE_GROUPS.find((mg) => mg.value === value)?.label ?? value;
-var techniqueLabel = (value) => value ? TRAINING_TECHNIQUES.find((t) => t.value === value)?.label ?? null : null;
+var findTechnique = (value) => value ? TRAINING_TECHNIQUES.find((t) => t.value === value) ?? null : null;
 function summarizeMuscles(day, exercisesById) {
   const values2 = /* @__PURE__ */ new Set();
   for (const entry of day.exercises) {
@@ -18801,7 +18801,7 @@ var PdfExportService = class _PdfExportService {
           const images = exercise ? yield this.embedExerciseImages(doc, exercise) : [];
           const nameEn = exercise?.name ?? entry.exerciseId;
           const nameIt = exercise?.nameIt ?? null;
-          const technique = techniqueLabel(entry.technique);
+          const technique = findTechnique(entry.technique);
           const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes, !!technique);
           const setRowHeight = 20;
           ensureSpace(headerHeight + 18 + setRowHeight);
@@ -18823,6 +18823,9 @@ var PdfExportService = class _PdfExportService {
   drawHeader(page, font, fontBold, client, sheet, y) {
     this.drawLogo(page, MARGIN, y - 26);
     page.drawText("SCHEDE ALLENAMENTO", { x: MARGIN + 34, y: y - 16, size: 13, font: fontBold, color: PRIMARY });
+    const coachLabel = "Coach: Cinzia Rosato";
+    const coachWidth = font.widthOfTextAtSize(coachLabel, 10);
+    page.drawText(coachLabel, { x: PAGE_WIDTH - MARGIN - coachWidth, y: y - 16, size: 10, font, color: TEXT_MUTED });
     y -= 46;
     page.drawText(`${client.first_name} ${client.last_name}`, { x: MARGIN, y, size: 17, font: fontBold, color: TEXT_DARK });
     y -= 20;
@@ -18867,7 +18870,8 @@ var PdfExportService = class _PdfExportService {
     page.drawText(truncated, { x: textX, y: lineY, size: 10, font: fontBold, color: TEXT_DARK });
     if (technique) {
       lineY -= 13;
-      page.drawText(`Tecnica: ${technique}`, { x: textX, y: lineY, size: 8, font: fontBold, color: PRIMARY });
+      const techniqueLine = this.truncateToWidth(`Tecnica: ${technique.label} \u2014 ${technique.description}`, font, 7.5, textMaxWidth);
+      page.drawText(techniqueLine, { x: textX, y: lineY, size: 7.5, font, color: PRIMARY });
     }
     if (notes) {
       lineY -= 13;
@@ -18979,4 +18983,4 @@ tslib/tslib.es6.js:
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
 */
-//# sourceMappingURL=chunk-VT3LP533.js.map
+//# sourceMappingURL=chunk-CKEB6ORU.js.map
