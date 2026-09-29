@@ -18730,6 +18730,7 @@ var CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
 var WEEK_COLUMNS = 5;
 var IMAGE_SIZE = 28;
 var PRIMARY = rgb(79 / 255, 70 / 255, 229 / 255);
+var ACCENT = rgb(15 / 255, 184 / 255, 176 / 255);
 var PRIMARY_TINT = rgb(0.94, 0.93, 0.99);
 var TEXT_DARK = rgb(0.1, 0.1, 0.15);
 var TEXT_MUTED = rgb(0.4, 0.4, 0.45);
@@ -18821,8 +18822,8 @@ var PdfExportService = class _PdfExportService {
     });
   }
   drawHeader(page, font, fontBold, client, sheet, y) {
-    this.drawLogo(page, MARGIN, y - 26);
-    page.drawText("VIGOR", { x: MARGIN + 34, y: y - 16, size: 15, font: fontBold, color: PRIMARY });
+    this.drawLogo(page, MARGIN, y - 24);
+    page.drawText("VIGOR", { x: MARGIN + 40, y: y - 16, size: 16, font: fontBold, color: PRIMARY });
     const coachLabel = "Coach: Cinzia Rosato";
     const coachWidth = font.widthOfTextAtSize(coachLabel, 10);
     page.drawText(coachLabel, { x: PAGE_WIDTH - MARGIN - coachWidth, y: y - 16, size: 10, font, color: TEXT_MUTED });
@@ -18835,14 +18836,29 @@ var PdfExportService = class _PdfExportService {
     y -= 22;
     return y;
   }
-  // Manubrio stilizzato: due dischi collegati da una barra, colore primario dell'app.
+  // Stesso manubrio dell'icona dell'app (public/icon-dumbbell.svg, viewBox
+  // 64x64), riportato qui con rettangoli arrotondati cosi' il logo e'
+  // identico e ben leggibile anche stampato. x = bordo sinistro,
+  // y = centro verticale dell'icona.
   drawLogo(page, x, y) {
-    const barY = y;
-    page.drawRectangle({ x: x + 6, y: barY - 2, width: 16, height: 4, color: PRIMARY });
-    page.drawEllipse({ x: x + 4, y: barY, xScale: 4, yScale: 9, color: PRIMARY });
-    page.drawEllipse({ x: x + 24, y: barY, xScale: 4, yScale: 9, color: PRIMARY });
-    page.drawEllipse({ x: x + 1, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
-    page.drawEllipse({ x: x + 27, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
+    const scale2 = 0.62;
+    const sx2 = (svgX) => x + (svgX - 4) * scale2;
+    const sy2 = (svgYBottom) => y + (32 - svgYBottom) * scale2;
+    const rect = (svgX, svgYTop, w, h, color) => {
+      page.drawRectangle({
+        x: sx2(svgX),
+        y: sy2(svgYTop + h),
+        width: w * scale2,
+        height: h * scale2,
+        color
+      });
+    };
+    rect(20, 28, 12, 8, PRIMARY);
+    rect(32, 28, 12, 8, ACCENT);
+    rect(9, 15, 9, 34, PRIMARY);
+    rect(4, 22, 5, 20, PRIMARY);
+    rect(46, 15, 9, 34, ACCENT);
+    rect(55, 22, 5, 20, ACCENT);
   }
   exerciseHeaderHeight(hasImages, hasNotes, hasTechnique) {
     let h = hasImages ? IMAGE_SIZE + 8 : 22;
@@ -18983,4 +18999,4 @@ tslib/tslib.es6.js:
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
 */
-//# sourceMappingURL=chunk-GWGPZ2QV.js.map
+//# sourceMappingURL=chunk-3Z5UOONS.js.map

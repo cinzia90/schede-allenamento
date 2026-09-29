@@ -44,7 +44,7 @@ var routes = [
   {
     path: "clienti/:id",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-AXGRDWLE.js").then((m) => m.ClientDetailComponent)
+    loadComponent: () => import("./chunk-NED673P5.js").then((m) => m.ClientDetailComponent)
   },
   {
     path: "clienti/:id/schede/nuova",
@@ -59,7 +59,7 @@ var routes = [
   {
     path: "clienti/:id/schede/:sheetId",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-JOL3LWV7.js").then((m) => m.SheetViewComponent)
+    loadComponent: () => import("./chunk-CORSN5YX.js").then((m) => m.SheetViewComponent)
   },
   { path: "**", redirectTo: "" }
 ];
