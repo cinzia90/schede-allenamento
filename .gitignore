@@ -1,0 +1,17 @@
+# Segreti — mai committare
+.env
+.env.local
+*.env
+
+# Supabase locale
+supabase/.branches
+supabase/.temp
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Log locali
+*.log

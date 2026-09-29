@@ -1,0 +1,39 @@
+<div class="page">
+  <a class="back" routerLink="/">&larr; {{ t.back }}</a>
+
+  @if (client(); as c) {
+    <header class="client-header">
+      <h1>{{ c.first_name }} {{ c.last_name }}</h1>
+    </header>
+
+    <div class="sheets-header">
+      <h2>{{ t.sheets }}</h2>
+      <button type="button" class="primary" (click)="newSheet()">{{ t.newSheet }}</button>
+    </div>
+
+    @if (!loading()) {
+      @if (sheets().length === 0) {
+        <p class="empty">{{ t.emptySheets }}</p>
+      } @else {
+        <ul class="sheet-list">
+          @for (sheet of sheets(); track sheet.id) {
+            <li class="sheet-card">
+              <div class="sheet-info">
+                <span class="title">{{ sheet.title }}</span>
+                <span class="date">{{ t.createdOn }} {{ sheet.created_at | date: 'dd/MM/yyyy' }}</span>
+              </div>
+              <div class="sheet-actions">
+                <button type="button" class="ghost" (click)="openSheet(sheet)">{{ t.view }}</button>
+                <button type="button" class="ghost" (click)="editSheet(sheet)">{{ t.edit }}</button>
+                <button type="button" class="ghost" [disabled]="downloadingId() === sheet.id" (click)="downloadSheet(sheet)">
+                  {{ t.download }}
+                </button>
+                <button type="button" class="danger" (click)="deleteSheet(sheet)">{{ t.delete }}</button>
+              </div>
+            </li>
+          }
+        </ul>
+      }
+    }
+  }
+</div>

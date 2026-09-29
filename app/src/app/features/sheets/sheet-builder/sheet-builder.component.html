@@ -1,0 +1,102 @@
+<div class="page">
+  <button type="button" class="back" (click)="cancel()">&larr; {{ t.cancel }}</button>
+
+  @if (!loading()) {
+    <h1>{{ isEdit() ? t.titleEdit : t.titleNew }}</h1>
+
+    <label class="sheet-title">
+      {{ t.sheetTitle }}
+      <input type="text" [placeholder]="t.sheetTitlePlaceholder" [ngModel]="title()" (ngModelChange)="title.set($event)" />
+    </label>
+
+    <label class="days-count">
+      {{ t.daysCount }}
+      <select [ngModel]="daysCount" (ngModelChange)="onDaysCountChange($event)">
+        @for (n of dayCountOptions; track n) {
+          <option [value]="n">{{ n }}</option>
+        }
+      </select>
+    </label>
+
+    @for (day of days(); track $index) {
+      <section class="day-card">
+        <input type="text" class="day-label" [placeholder]="t.dayLabelPlaceholder" [ngModel]="day.label" (ngModelChange)="updateDayLabel($index, $event)" />
+
+        <div class="muscle-groups">
+          <span class="mg-title">{{ t.muscleGroups }}</span>
+          <div class="mg-chips">
+            @for (mg of muscleGroups; track mg.value) {
+              <label class="chip" [class.active]="day.muscleGroups.includes(mg.value)">
+                <input type="checkbox" [checked]="day.muscleGroups.includes(mg.value)" (change)="toggleMuscleGroup($index, mg.value)" />
+                {{ mg.label }}
+              </label>
+            }
+          </div>
+        </div>
+
+        @if (day.muscleGroups.length === 0) {
+          <p class="hint">{{ t.noMuscleGroupsYet }}</p>
+        } @else {
+          <div class="picker">
+            <select [ngModel]="day.pickerExerciseId" (ngModelChange)="day.pickerExerciseId = $event">
+              <option value="">{{ t.chooseExercise }}</option>
+              @for (ex of day.availableExercises; track ex.id) {
+                <option [value]="ex.id">{{ exerciseDisplayName(ex) }}</option>
+              }
+            </select>
+            <button type="button" class="ghost" (click)="addExercise($index)">{{ t.addExercise }}</button>
+          </div>
+        }
+
+        @if (day.exercises.length > 0) {
+          <ul class="exercise-list">
+            @for (entry of day.exercises; track entry.exerciseId) {
+              <li class="exercise-row">
+                @if (exerciseOf(entry.exerciseId); as ex) {
+                  <div class="thumbs">
+                    @for (img of ex.images.slice(0, 2); track img) {
+                      <img [src]="exerciseImageUrl(img)" [alt]="ex.name" loading="lazy" />
+                    }
+                  </div>
+                  <div class="exercise-fields">
+                    <span class="exercise-name">{{ exerciseDisplayName(ex) }}</span>
+                    <div class="fields-row">
+                      <label>
+                        {{ t.sets }}
+                        <input type="number" min="1" [(ngModel)]="entry.sets" />
+                      </label>
+                      <label>
+                        {{ t.reps }}
+                        <input type="text" [(ngModel)]="entry.reps" />
+                      </label>
+                      <label>
+                        {{ t.rest }}
+                        <input type="text" [(ngModel)]="entry.rest" />
+                      </label>
+                    </div>
+                    <label class="notes-field">
+                      {{ t.notes }}
+                      <input type="text" [(ngModel)]="entry.notes" />
+                    </label>
+                  </div>
+                  <button type="button" class="remove" (click)="removeExercise($index, entry.exerciseId)">{{ t.removeExercise }}</button>
+                }
+              </li>
+            }
+          </ul>
+        }
+      </section>
+    }
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+    <div class="actions">
+      <button type="button" class="ghost" (click)="cancel()">{{ t.cancel }}</button>
+      <button type="button" class="primary" [disabled]="saving()" (click)="save()">
+        {{ saving() ? t.saving : t.save }}
+      </button>
+    </div>
+  }
+</div>

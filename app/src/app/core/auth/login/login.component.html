@@ -1,0 +1,23 @@
+<div class="login-page">
+  <form class="login-card" (ngSubmit)="submit()">
+    <h1>{{ t.title }}</h1>
+
+    <label>
+      {{ t.email }}
+      <input type="email" name="email" [(ngModel)]="email" required autocomplete="username" />
+    </label>
+
+    <label>
+      {{ t.password }}
+      <input type="password" name="password" [(ngModel)]="password" required autocomplete="current-password" />
+    </label>
+
+    @if (errorMessage()) {
+      <p class="error">{{ errorMessage() }}</p>
+    }
+
+    <button type="submit" [disabled]="loading()">
+      {{ loading() ? t.submitting : t.submit }}
+    </button>
+  </form>
+</div>
