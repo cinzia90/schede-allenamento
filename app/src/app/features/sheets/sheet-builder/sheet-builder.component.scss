@@ -130,6 +130,29 @@ select {
   gap: 6px;
 }
 
+.mg-shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.shortcut {
+  padding: 6px 12px;
+  border: 1px solid var(--sa-primary);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--sa-primary) 6%, transparent);
+  color: var(--sa-primary-dark);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: color-mix(in srgb, var(--sa-primary) 15%, transparent);
+  }
+}
+
 .chip {
   display: flex;
   align-items: center;

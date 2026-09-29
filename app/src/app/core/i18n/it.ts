@@ -42,6 +42,8 @@ export const it = {
     stepNext: 'Giorno successivo →',
     dayLabelPlaceholder: 'Es. Petto e Tricipiti',
     muscleGroups: 'Gruppi muscolari',
+    upperBody: 'Upper (parte superiore)',
+    lowerBody: 'Lower (parte inferiore)',
     chooseExercise: 'Cerca un esercizio…',
     noExercisesMatch: 'Nessun esercizio trovato.',
     sets: 'Serie',

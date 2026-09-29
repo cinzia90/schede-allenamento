@@ -46,6 +46,10 @@
 
         <div class="muscle-groups">
           <span class="mg-title">{{ t.muscleGroups }}</span>
+          <div class="mg-shortcuts">
+            <button type="button" class="shortcut" (click)="selectBodyRegion(activeDayIndex(), 'upper')">{{ t.upperBody }}</button>
+            <button type="button" class="shortcut" (click)="selectBodyRegion(activeDayIndex(), 'lower')">{{ t.lowerBody }}</button>
+          </div>
           <div class="mg-chips">
             @for (mg of muscleGroups; track mg.value) {
               <label class="chip" [class.active]="day.muscleGroups.includes(mg.value)">

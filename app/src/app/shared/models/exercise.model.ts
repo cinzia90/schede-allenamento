@@ -44,3 +44,20 @@ export const MUSCLE_GROUPS: { value: string; label: string }[] = [
   { value: 'adductors', label: 'Adduttori' },
   { value: 'neck', label: 'Collo' },
 ];
+
+// Scorciatoia "upper/lower" per selezionare in un click i gruppi muscolari
+// tipici di una scheda upper body o lower body.
+export const UPPER_BODY_GROUPS = [
+  'chest',
+  'lats',
+  'middle back',
+  'shoulders',
+  'traps',
+  'biceps',
+  'triceps',
+  'forearms',
+  'abdominals',
+  'neck',
+];
+
+export const LOWER_BODY_GROUPS = ['lower back', 'quadriceps', 'hamstrings', 'glutes', 'calves', 'abductors', 'adductors'];

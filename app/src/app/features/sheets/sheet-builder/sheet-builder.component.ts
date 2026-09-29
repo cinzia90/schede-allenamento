@@ -5,7 +5,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../../../core/services/data.service';
 import { ExerciseLibraryService } from '../../../core/services/exercise-library.service';
 import { WorkoutDay, WorkoutExerciseEntry } from '../../../shared/models/client.model';
-import { Exercise, MUSCLE_GROUPS, exerciseDisplayName, exerciseImageUrl } from '../../../shared/models/exercise.model';
+import {
+  Exercise,
+  LOWER_BODY_GROUPS,
+  MUSCLE_GROUPS,
+  UPPER_BODY_GROUPS,
+  exerciseDisplayName,
+  exerciseImageUrl,
+} from '../../../shared/models/exercise.model';
 import { it } from '../../../core/i18n/it';
 
 interface DayState {
@@ -127,10 +134,19 @@ export class SheetBuilderComponent {
   }
 
   toggleMuscleGroup(dayIndex: number, group: string): void {
+    const day = this.days()[dayIndex];
+    const has = day.muscleGroups.includes(group);
+    const muscleGroups = has ? day.muscleGroups.filter((g) => g !== group) : [...day.muscleGroups, group];
+    this.applyMuscleGroups(dayIndex, muscleGroups);
+  }
+
+  selectBodyRegion(dayIndex: number, region: 'upper' | 'lower'): void {
+    this.applyMuscleGroups(dayIndex, region === 'upper' ? [...UPPER_BODY_GROUPS] : [...LOWER_BODY_GROUPS]);
+  }
+
+  private applyMuscleGroups(dayIndex: number, muscleGroups: string[]): void {
     this.days.update((days) => {
       const day = days[dayIndex];
-      const has = day.muscleGroups.includes(group);
-      const muscleGroups = has ? day.muscleGroups.filter((g) => g !== group) : [...day.muscleGroups, group];
       const availableExercises = this.computeAvailable(muscleGroups);
       const validIds = new Set(availableExercises.map((e) => e.id));
       const exercises = day.exercises.filter((ex) => validIds.has(ex.exerciseId));
