@@ -1,6 +1,6 @@
 import {
   PdfExportService
-} from "./chunk-HHN72HHV.js";
+} from "./chunk-23J7LATN.js";
 import {
   ExerciseLibraryService
 } from "./chunk-E65U22XO.js";
@@ -309,4 +309,4 @@ var ClientDetailComponent = class _ClientDetailComponent {
 export {
   ClientDetailComponent
 };
-//# sourceMappingURL=chunk-G62TUQ5Z.js.map
+//# sourceMappingURL=chunk-XQRPKPT3.js.map

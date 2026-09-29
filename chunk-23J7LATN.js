@@ -1,5 +1,6 @@
 import {
-  MUSCLE_GROUPS
+  MUSCLE_GROUPS,
+  exerciseImageUrl
 } from "./chunk-E65U22XO.js";
 import {
   Injectable,
@@ -18724,18 +18725,20 @@ var PDFButton_default = PDFButton;
 var PAGE_WIDTH = 595;
 var PAGE_HEIGHT = 842;
 var MARGIN = 40;
+var CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
 var WEEK_COLUMNS = 5;
+var IMAGE_SIZE = 28;
 var PRIMARY = rgb(79 / 255, 70 / 255, 229 / 255);
+var PRIMARY_TINT = rgb(0.94, 0.93, 0.99);
 var TEXT_DARK = rgb(0.1, 0.1, 0.15);
 var TEXT_MUTED = rgb(0.4, 0.4, 0.45);
 var BORDER = rgb(0.85, 0.85, 0.88);
 var HEADER_FILL = rgb(0.95, 0.95, 0.98);
 var COLUMNS = [
-  { label: "Esercizio", width: 190 },
-  { label: "Serie", width: 30 },
-  { label: "Rip.", width: 35 },
-  { label: "Recupero", width: 45 },
-  ...Array.from({ length: WEEK_COLUMNS }, (_, i) => ({ label: `Sett. ${i + 1}`, width: 43 }))
+  { label: "Serie", width: 35 },
+  { label: "Ripetizioni", width: 65 },
+  { label: "Recupero", width: 50 },
+  ...Array.from({ length: WEEK_COLUMNS }, (_, i) => ({ label: `Sett. ${i + 1}`, width: 73 }))
 ];
 var muscleGroupLabel = (value) => MUSCLE_GROUPS.find((mg) => mg.value === value)?.label ?? value;
 var PdfExportService = class _PdfExportService {
@@ -18763,34 +18766,42 @@ var PdfExportService = class _PdfExportService {
         if (y - needed < MARGIN) {
           page = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
           y = PAGE_HEIGHT - MARGIN;
+          return true;
         }
+        return false;
       };
       y = this.drawHeader(page, font, fontBold, client, sheet, y);
       for (const day of sheet.days) {
-        ensureSpace(70);
+        ensureSpace(50);
         const muscleSummary = day.muscleGroups.map(muscleGroupLabel).join(", ");
         const dayTitle = muscleSummary ? `${day.label} \u2014 ${muscleSummary}` : day.label;
-        page.drawRectangle({ x: MARGIN, y: y - 20, width: PAGE_WIDTH - MARGIN * 2, height: 22, color: PRIMARY });
+        page.drawRectangle({ x: MARGIN, y: y - 20, width: CONTENT_WIDTH, height: 22, color: PRIMARY });
         page.drawText(dayTitle.toUpperCase(), { x: MARGIN + 8, y: y - 15, size: 10.5, font: fontBold, color: rgb(1, 1, 1) });
-        y -= 30;
+        y -= 32;
         if (day.exercises.length === 0) {
           page.drawText("Nessun esercizio in questo giorno.", { x: MARGIN, y, size: 9.5, font: fontItalic, color: TEXT_MUTED });
           y -= 20;
           continue;
         }
-        y = this.drawTableHeader(page, fontBold, y);
         for (const entry of day.exercises) {
           const exercise = exercisesById.get(entry.exerciseId);
+          const images = exercise ? yield this.embedExerciseImages(doc, exercise) : [];
           const nameEn = exercise?.name ?? entry.exerciseId;
           const nameIt = exercise?.nameIt ?? null;
-          const rowHeight = entry.notes ? 46 : 34;
-          ensureSpace(rowHeight);
-          if (y === PAGE_HEIGHT - MARGIN) {
-            y = this.drawTableHeader(page, fontBold, y);
+          const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes);
+          const setRowHeight = 20;
+          ensureSpace(headerHeight + 18 + setRowHeight);
+          y = this.drawExerciseHeader(page, font, fontBold, fontItalic, y, headerHeight, images, nameEn, nameIt, entry.notes);
+          y = this.drawColumnHeader(page, fontBold, y);
+          for (let setIndex = 1; setIndex <= entry.sets; setIndex++) {
+            if (ensureSpace(setRowHeight)) {
+              y = this.drawColumnHeader(page, fontBold, y);
+            }
+            y = this.drawSetRow(page, font, y, setRowHeight, setIndex, entry.reps, entry.rest);
           }
-          y = this.drawTableRow(page, font, fontBold, fontItalic, y, rowHeight, nameEn, nameIt, entry);
+          y -= 12;
         }
-        y -= 16;
+        y -= 12;
       }
       return doc.save();
     });
@@ -18803,12 +18814,7 @@ var PdfExportService = class _PdfExportService {
     y -= 20;
     page.drawText(sheet.title, { x: MARGIN, y, size: 11, font, color: TEXT_MUTED });
     y -= 14;
-    page.drawLine({
-      start: { x: MARGIN, y },
-      end: { x: PAGE_WIDTH - MARGIN, y },
-      thickness: 1,
-      color: BORDER
-    });
+    page.drawLine({ start: { x: MARGIN, y }, end: { x: PAGE_WIDTH - MARGIN, y }, thickness: 1, color: BORDER });
     y -= 22;
     return y;
   }
@@ -18821,55 +18827,60 @@ var PdfExportService = class _PdfExportService {
     page.drawEllipse({ x: x + 1, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
     page.drawEllipse({ x: x + 27, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
   }
-  drawTableHeader(page, fontBold, y) {
-    const headerHeight = 20;
-    page.drawRectangle({ x: MARGIN, y: y - headerHeight, width: PAGE_WIDTH - MARGIN * 2, height: headerHeight, color: HEADER_FILL });
+  exerciseHeaderHeight(hasImages, hasNotes) {
+    let h = hasImages ? IMAGE_SIZE + 8 : 22;
+    if (hasNotes) {
+      h += 12;
+    }
+    return h;
+  }
+  drawExerciseHeader(page, font, fontBold, fontItalic, y, height, images, nameEn, nameIt, notes) {
+    page.drawRectangle({ x: MARGIN, y: y - height, width: CONTENT_WIDTH, height, borderColor: BORDER, borderWidth: 0.5, color: PRIMARY_TINT });
+    let textX = MARGIN + 8;
+    const imagesY = y - height / 2 - IMAGE_SIZE / 2;
+    for (const img of images) {
+      page.drawImage(img, { x: textX, y: imagesY, width: IMAGE_SIZE, height: IMAGE_SIZE });
+      textX += IMAGE_SIZE + 6;
+    }
+    const textMaxWidth = MARGIN + CONTENT_WIDTH - textX - 8;
+    const label = nameIt ? `${nameEn}  \u2014  ${nameIt}` : nameEn;
+    const truncated = this.truncateToWidth(label, fontBold, 10, textMaxWidth);
+    const nameY = notes ? y - height / 2 : y - height / 2 - 3;
+    page.drawText(truncated, { x: textX, y: nameY, size: 10, font: fontBold, color: TEXT_DARK });
+    if (notes) {
+      const truncatedNotes = this.truncateToWidth(notes, fontItalic, 8, textMaxWidth);
+      page.drawText(truncatedNotes, { x: textX, y: nameY - 13, size: 8, font: fontItalic, color: TEXT_MUTED });
+    }
+    return y - height;
+  }
+  drawColumnHeader(page, fontBold, y) {
+    const h = 18;
+    page.drawRectangle({ x: MARGIN, y: y - h, width: CONTENT_WIDTH, height: h, color: HEADER_FILL });
     let x = MARGIN;
     for (const col of COLUMNS) {
-      page.drawText(col.label, { x: x + 4, y: y - 14, size: 8.5, font: fontBold, color: TEXT_DARK });
+      page.drawText(col.label, { x: x + 4, y: y - 13, size: 7.5, font: fontBold, color: TEXT_DARK });
       x += col.width;
     }
-    this.drawRowBorders(page, y, headerHeight);
-    return y - headerHeight;
+    this.drawRowBorders(page, y, h);
+    return y - h;
   }
-  drawTableRow(page, font, fontBold, fontItalic, y, rowHeight, nameEn, nameIt, entry) {
+  drawSetRow(page, font, y, rowHeight, setIndex, reps, rest) {
     this.drawRowBorders(page, y, rowHeight);
     let x = MARGIN;
-    const nameCol = COLUMNS[0];
-    const innerWidth = nameCol.width - 8;
-    const truncatedNameEn = this.truncateToWidth(nameEn, fontBold, 8.5, innerWidth);
-    page.drawText(truncatedNameEn, { x: x + 4, y: y - 12, size: 8.5, font: fontBold, color: TEXT_DARK });
-    if (nameIt) {
-      const truncatedNameIt = this.truncateToWidth(nameIt, fontItalic, 7.5, innerWidth);
-      page.drawText(truncatedNameIt, { x: x + 4, y: y - 22, size: 7.5, font: fontItalic, color: TEXT_MUTED });
-    }
-    if (entry.notes) {
-      const truncatedNotes = this.truncateToWidth(entry.notes, fontItalic, 7, innerWidth);
-      page.drawText(truncatedNotes, { x: x + 4, y: y - 34, size: 7, font: fontItalic, color: TEXT_MUTED });
-    }
-    x += nameCol.width;
-    const values2 = [String(entry.sets), entry.reps, entry.rest, "", "", "", "", ""];
-    for (let i = 1; i < COLUMNS.length; i++) {
-      const col = COLUMNS[i];
-      const value = values2[i - 1];
+    const values2 = [String(setIndex), reps, rest, "", "", "", "", ""];
+    for (let i = 0; i < COLUMNS.length; i++) {
+      const value = values2[i];
       if (value) {
-        page.drawText(value, { x: x + 4, y: y - rowHeight / 2 - 3, size: 8.5, font, color: TEXT_DARK });
+        page.drawText(value, { x: x + 6, y: y - rowHeight / 2 - 3, size: 8.5, font, color: TEXT_DARK });
       }
-      x += col.width;
+      x += COLUMNS[i].width;
     }
     return y - rowHeight;
   }
   drawRowBorders(page, y, rowHeight) {
     let x = MARGIN;
     for (const col of COLUMNS) {
-      page.drawRectangle({
-        x,
-        y: y - rowHeight,
-        width: col.width,
-        height: rowHeight,
-        borderColor: BORDER,
-        borderWidth: 0.5
-      });
+      page.drawRectangle({ x, y: y - rowHeight, width: col.width, height: rowHeight, borderColor: BORDER, borderWidth: 0.5 });
       x += col.width;
     }
   }
@@ -18882,6 +18893,35 @@ var PdfExportService = class _PdfExportService {
       truncated = truncated.slice(0, -1);
     }
     return truncated + "\u2026";
+  }
+  embedExerciseImages(doc, exercise) {
+    return __async(this, null, function* () {
+      const images = [];
+      for (const path of exercise.images.slice(0, 2)) {
+        const embedded = yield this.embedImage(doc, path);
+        if (embedded) {
+          images.push(embedded);
+        }
+      }
+      return images;
+    });
+  }
+  embedImage(doc, path) {
+    return __async(this, null, function* () {
+      try {
+        const response = yield fetch(exerciseImageUrl(path));
+        if (!response.ok) {
+          return null;
+        }
+        const bytes = new Uint8Array(yield response.arrayBuffer());
+        if (path.toLowerCase().endsWith(".png")) {
+          return yield doc.embedPng(bytes);
+        }
+        return yield doc.embedJpg(bytes);
+      } catch {
+        return null;
+      }
+    });
   }
   static \u0275fac = function PdfExportService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _PdfExportService)();
@@ -18916,4 +18956,4 @@ tslib/tslib.es6.js:
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
 */
-//# sourceMappingURL=chunk-HHN72HHV.js.map
+//# sourceMappingURL=chunk-23J7LATN.js.map
