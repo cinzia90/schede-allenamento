@@ -13,7 +13,7 @@ import {
 } from "./chunk-TTYTNCN5.js";
 import {
   it
-} from "./chunk-ICMLJ3WR.js";
+} from "./chunk-NSMX62OF.js";
 import {
   AuthService,
   CommonModule,
@@ -275,4 +275,4 @@ var ClientListComponent = class _ClientListComponent {
 export {
   ClientListComponent
 };
-//# sourceMappingURL=chunk-C2VJ7TQZ.js.map
+//# sourceMappingURL=chunk-P4MRXXOF.js.map

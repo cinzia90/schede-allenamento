@@ -1,7 +1,6 @@
 import {
-  exerciseDisplayName,
-  exerciseImageUrl
-} from "./chunk-3ESUTDCY.js";
+  MUSCLE_GROUPS
+} from "./chunk-E65U22XO.js";
 import {
   Injectable,
   __async,
@@ -18722,8 +18721,23 @@ var PDFButton = (
 var PDFButton_default = PDFButton;
 
 // src/app/core/services/pdf-export.service.ts
-var PAGE_MARGIN = 40;
-var IMAGE_SIZE = 70;
+var PAGE_WIDTH = 595;
+var PAGE_HEIGHT = 842;
+var MARGIN = 40;
+var WEEK_COLUMNS = 5;
+var PRIMARY = rgb(79 / 255, 70 / 255, 229 / 255);
+var TEXT_DARK = rgb(0.1, 0.1, 0.15);
+var TEXT_MUTED = rgb(0.4, 0.4, 0.45);
+var BORDER = rgb(0.85, 0.85, 0.88);
+var HEADER_FILL = rgb(0.95, 0.95, 0.98);
+var COLUMNS = [
+  { label: "Esercizio", width: 190 },
+  { label: "Serie", width: 30 },
+  { label: "Rip.", width: 35 },
+  { label: "Recupero", width: 45 },
+  ...Array.from({ length: WEEK_COLUMNS }, (_, i) => ({ label: `Sett. ${i + 1}`, width: 43 }))
+];
+var muscleGroupLabel = (value) => MUSCLE_GROUPS.find((mg) => mg.value === value)?.label ?? value;
 var PdfExportService = class _PdfExportService {
   downloadSheet(client, sheet, exercisesById) {
     return __async(this, null, function* () {
@@ -18742,93 +18756,132 @@ var PdfExportService = class _PdfExportService {
       const doc = yield PDFDocument_default.create();
       const font = yield doc.embedFont(StandardFonts.Helvetica);
       const fontBold = yield doc.embedFont(StandardFonts.HelveticaBold);
-      let page = doc.addPage([595, 842]);
-      let y = 842 - PAGE_MARGIN;
+      const fontItalic = yield doc.embedFont(StandardFonts.HelveticaOblique);
+      let page = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+      let y = PAGE_HEIGHT - MARGIN;
       const ensureSpace = (needed) => {
-        if (y - needed < PAGE_MARGIN) {
-          page = doc.addPage([595, 842]);
-          y = 842 - PAGE_MARGIN;
+        if (y - needed < MARGIN) {
+          page = doc.addPage([PAGE_WIDTH, PAGE_HEIGHT]);
+          y = PAGE_HEIGHT - MARGIN;
         }
       };
-      page.drawText(sheet.title, { x: PAGE_MARGIN, y, size: 18, font: fontBold, color: rgb(0.1, 0.1, 0.15) });
-      y -= 22;
-      page.drawText(`${client.first_name} ${client.last_name}`, { x: PAGE_MARGIN, y, size: 12, font, color: rgb(0.3, 0.3, 0.35) });
-      y -= 28;
+      y = this.drawHeader(page, font, fontBold, client, sheet, y);
       for (const day of sheet.days) {
-        ensureSpace(40);
-        page.drawText(day.label, { x: PAGE_MARGIN, y, size: 14, font: fontBold, color: rgb(0.1, 0.1, 0.15) });
-        y -= 20;
+        ensureSpace(70);
+        const muscleSummary = day.muscleGroups.map(muscleGroupLabel).join(", ");
+        const dayTitle = muscleSummary ? `${day.label} \u2014 ${muscleSummary}` : day.label;
+        page.drawRectangle({ x: MARGIN, y: y - 20, width: PAGE_WIDTH - MARGIN * 2, height: 22, color: PRIMARY });
+        page.drawText(dayTitle.toUpperCase(), { x: MARGIN + 8, y: y - 15, size: 10.5, font: fontBold, color: rgb(1, 1, 1) });
+        y -= 30;
+        if (day.exercises.length === 0) {
+          page.drawText("Nessun esercizio in questo giorno.", { x: MARGIN, y, size: 9.5, font: fontItalic, color: TEXT_MUTED });
+          y -= 20;
+          continue;
+        }
+        y = this.drawTableHeader(page, fontBold, y);
         for (const entry of day.exercises) {
           const exercise = exercisesById.get(entry.exerciseId);
-          const rowHeight = IMAGE_SIZE + 10;
+          const nameEn = exercise?.name ?? entry.exerciseId;
+          const nameIt = exercise?.nameIt ?? null;
+          const rowHeight = entry.notes ? 46 : 34;
           ensureSpace(rowHeight);
-          const images = exercise ? yield this.embedFirstImage(doc, exercise) : null;
-          if (images) {
-            page.drawImage(images, { x: PAGE_MARGIN, y: y - IMAGE_SIZE, width: IMAGE_SIZE, height: IMAGE_SIZE });
+          if (y === PAGE_HEIGHT - MARGIN) {
+            y = this.drawTableHeader(page, fontBold, y);
           }
-          const textX = PAGE_MARGIN + IMAGE_SIZE + 12;
-          let textY = y - 12;
-          const name = exercise ? exerciseDisplayName(exercise) : entry.exerciseId;
-          textY = this.drawWrapped(page, name, textX, textY, fontBold, 11, 400);
-          textY -= 4;
-          page.drawText(`Serie: ${entry.sets}  Rip: ${entry.reps}  Recupero: ${entry.rest}`, {
-            x: textX,
-            y: textY,
-            size: 10,
-            font,
-            color: rgb(0.3, 0.3, 0.35)
-          });
-          textY -= 14;
-          if (entry.notes) {
-            this.drawWrapped(page, entry.notes, textX, textY, font, 9, 380);
-          }
-          y -= rowHeight;
+          y = this.drawTableRow(page, font, fontBold, fontItalic, y, rowHeight, nameEn, nameIt, entry);
         }
-        y -= 10;
+        y -= 16;
       }
       return doc.save();
     });
   }
-  drawWrapped(page, text, x, y, font, size, maxWidth) {
-    const words = text.split(" ");
-    let line = "";
-    let cursorY = y;
-    for (const word of words) {
-      const candidate = line ? `${line} ${word}` : word;
-      if (font.widthOfTextAtSize(candidate, size) > maxWidth && line) {
-        page.drawText(line, { x, y: cursorY, size, font, color: rgb(0.15, 0.15, 0.2) });
-        cursorY -= size + 3;
-        line = word;
-      } else {
-        line = candidate;
-      }
-    }
-    if (line) {
-      page.drawText(line, { x, y: cursorY, size, font, color: rgb(0.15, 0.15, 0.2) });
-      cursorY -= size + 3;
-    }
-    return cursorY;
-  }
-  embedFirstImage(doc, exercise) {
-    return __async(this, null, function* () {
-      const path = exercise.images[0];
-      if (!path) {
-        return null;
-      }
-      try {
-        const response = yield fetch(exerciseImageUrl(path));
-        if (!response.ok) {
-          return null;
-        }
-        const bytes = new Uint8Array(yield response.arrayBuffer());
-        if (path.toLowerCase().endsWith(".png")) {
-          return yield doc.embedPng(bytes);
-        }
-        return yield doc.embedJpg(bytes);
-      } catch {
-        return null;
-      }
+  drawHeader(page, font, fontBold, client, sheet, y) {
+    this.drawLogo(page, MARGIN, y - 26);
+    page.drawText("SCHEDE ALLENAMENTO", { x: MARGIN + 34, y: y - 16, size: 13, font: fontBold, color: PRIMARY });
+    y -= 46;
+    page.drawText(`${client.first_name} ${client.last_name}`, { x: MARGIN, y, size: 17, font: fontBold, color: TEXT_DARK });
+    y -= 20;
+    page.drawText(sheet.title, { x: MARGIN, y, size: 11, font, color: TEXT_MUTED });
+    y -= 14;
+    page.drawLine({
+      start: { x: MARGIN, y },
+      end: { x: PAGE_WIDTH - MARGIN, y },
+      thickness: 1,
+      color: BORDER
     });
+    y -= 22;
+    return y;
+  }
+  // Manubrio stilizzato: due dischi collegati da una barra, colore primario dell'app.
+  drawLogo(page, x, y) {
+    const barY = y;
+    page.drawRectangle({ x: x + 6, y: barY - 2, width: 16, height: 4, color: PRIMARY });
+    page.drawEllipse({ x: x + 4, y: barY, xScale: 4, yScale: 9, color: PRIMARY });
+    page.drawEllipse({ x: x + 24, y: barY, xScale: 4, yScale: 9, color: PRIMARY });
+    page.drawEllipse({ x: x + 1, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
+    page.drawEllipse({ x: x + 27, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
+  }
+  drawTableHeader(page, fontBold, y) {
+    const headerHeight = 20;
+    page.drawRectangle({ x: MARGIN, y: y - headerHeight, width: PAGE_WIDTH - MARGIN * 2, height: headerHeight, color: HEADER_FILL });
+    let x = MARGIN;
+    for (const col of COLUMNS) {
+      page.drawText(col.label, { x: x + 4, y: y - 14, size: 8.5, font: fontBold, color: TEXT_DARK });
+      x += col.width;
+    }
+    this.drawRowBorders(page, y, headerHeight);
+    return y - headerHeight;
+  }
+  drawTableRow(page, font, fontBold, fontItalic, y, rowHeight, nameEn, nameIt, entry) {
+    this.drawRowBorders(page, y, rowHeight);
+    let x = MARGIN;
+    const nameCol = COLUMNS[0];
+    const innerWidth = nameCol.width - 8;
+    const truncatedNameEn = this.truncateToWidth(nameEn, fontBold, 8.5, innerWidth);
+    page.drawText(truncatedNameEn, { x: x + 4, y: y - 12, size: 8.5, font: fontBold, color: TEXT_DARK });
+    if (nameIt) {
+      const truncatedNameIt = this.truncateToWidth(nameIt, fontItalic, 7.5, innerWidth);
+      page.drawText(truncatedNameIt, { x: x + 4, y: y - 22, size: 7.5, font: fontItalic, color: TEXT_MUTED });
+    }
+    if (entry.notes) {
+      const truncatedNotes = this.truncateToWidth(entry.notes, fontItalic, 7, innerWidth);
+      page.drawText(truncatedNotes, { x: x + 4, y: y - 34, size: 7, font: fontItalic, color: TEXT_MUTED });
+    }
+    x += nameCol.width;
+    const values2 = [String(entry.sets), entry.reps, entry.rest, "", "", "", "", ""];
+    for (let i = 1; i < COLUMNS.length; i++) {
+      const col = COLUMNS[i];
+      const value = values2[i - 1];
+      if (value) {
+        page.drawText(value, { x: x + 4, y: y - rowHeight / 2 - 3, size: 8.5, font, color: TEXT_DARK });
+      }
+      x += col.width;
+    }
+    return y - rowHeight;
+  }
+  drawRowBorders(page, y, rowHeight) {
+    let x = MARGIN;
+    for (const col of COLUMNS) {
+      page.drawRectangle({
+        x,
+        y: y - rowHeight,
+        width: col.width,
+        height: rowHeight,
+        borderColor: BORDER,
+        borderWidth: 0.5
+      });
+      x += col.width;
+    }
+  }
+  truncateToWidth(text, font, size, maxWidth) {
+    if (font.widthOfTextAtSize(text, size) <= maxWidth) {
+      return text;
+    }
+    let truncated = text;
+    while (truncated.length > 1 && font.widthOfTextAtSize(truncated + "\u2026", size) > maxWidth) {
+      truncated = truncated.slice(0, -1);
+    }
+    return truncated + "\u2026";
   }
   static \u0275fac = function PdfExportService_Factory(__ngFactoryType__) {
     return new (__ngFactoryType__ || _PdfExportService)();
@@ -18863,4 +18916,4 @@ tslib/tslib.es6.js:
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
 */
-//# sourceMappingURL=chunk-4EATHVOT.js.map
+//# sourceMappingURL=chunk-HHN72HHV.js.map

@@ -43,6 +43,8 @@ var it = {
     stepNext: "Giorno successivo \u2192",
     dayLabelPlaceholder: "Es. Petto e Tricipiti",
     muscleGroups: "Gruppi muscolari",
+    upperBody: "Upper (parte superiore)",
+    lowerBody: "Lower (parte inferiore)",
     chooseExercise: "Cerca un esercizio\u2026",
     noExercisesMatch: "Nessun esercizio trovato.",
     sets: "Serie",
@@ -61,4 +63,4 @@ var it = {
 export {
   it
 };
-//# sourceMappingURL=chunk-ICMLJ3WR.js.map
+//# sourceMappingURL=chunk-NSMX62OF.js.map

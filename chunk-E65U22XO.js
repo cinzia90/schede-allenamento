@@ -73,11 +73,26 @@ var MUSCLE_GROUPS = [
   { value: "adductors", label: "Adduttori" },
   { value: "neck", label: "Collo" }
 ];
+var UPPER_BODY_GROUPS = [
+  "chest",
+  "lats",
+  "middle back",
+  "shoulders",
+  "traps",
+  "biceps",
+  "triceps",
+  "forearms",
+  "abdominals",
+  "neck"
+];
+var LOWER_BODY_GROUPS = ["lower back", "quadriceps", "hamstrings", "glutes", "calves", "abductors", "adductors"];
 
 export {
   ExerciseLibraryService,
   exerciseImageUrl,
   exerciseDisplayName,
-  MUSCLE_GROUPS
+  MUSCLE_GROUPS,
+  UPPER_BODY_GROUPS,
+  LOWER_BODY_GROUPS
 };
-//# sourceMappingURL=chunk-3ESUTDCY.js.map
+//# sourceMappingURL=chunk-E65U22XO.js.map
