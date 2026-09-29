@@ -49,6 +49,7 @@ export class SheetBuilderComponent {
   private clientId = '';
   private sheetId: string | null = null;
   private exerciseById = new Map<string, Exercise>();
+  private techniqueQuery = new Map<string, string>();
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -211,6 +212,54 @@ export class SheetBuilderComponent {
 
   exerciseOf(id: string): Exercise | undefined {
     return this.exerciseById.get(id);
+  }
+
+  private techniqueKey(dayIndex: number, exerciseId: string): string {
+    return `${dayIndex}-${exerciseId}`;
+  }
+
+  techniqueLabelFor(value: string): string {
+    return this.techniques.find((t) => t.value === value)?.label ?? '';
+  }
+
+  isTechniqueOpen(dayIndex: number, exerciseId: string): boolean {
+    return this.techniqueQuery.has(this.techniqueKey(dayIndex, exerciseId));
+  }
+
+  techniqueQueryValue(dayIndex: number, exerciseId: string, currentTechnique: string): string {
+    const key = this.techniqueKey(dayIndex, exerciseId);
+    return this.techniqueQuery.has(key) ? this.techniqueQuery.get(key)! : this.techniqueLabelFor(currentTechnique);
+  }
+
+  onTechniqueFocus(dayIndex: number, exerciseId: string): void {
+    this.techniqueQuery.set(this.techniqueKey(dayIndex, exerciseId), '');
+  }
+
+  onTechniqueQuery(dayIndex: number, exerciseId: string, text: string): void {
+    this.techniqueQuery.set(this.techniqueKey(dayIndex, exerciseId), text);
+  }
+
+  onTechniqueBlur(dayIndex: number, exerciseId: string): void {
+    setTimeout(() => this.techniqueQuery.delete(this.techniqueKey(dayIndex, exerciseId)), 150);
+  }
+
+  techniqueMatches(dayIndex: number, exerciseId: string): { value: string; label: string; description: string }[] {
+    const term = (this.techniqueQuery.get(this.techniqueKey(dayIndex, exerciseId)) ?? '').trim().toLowerCase();
+    if (!term) {
+      return this.techniques;
+    }
+    return this.techniques.filter((t) => t.label.toLowerCase().includes(term));
+  }
+
+  selectTechnique(dayIndex: number, exerciseId: string, value: string): void {
+    this.days.update((days) => {
+      const day = days[dayIndex];
+      const exercises = day.exercises.map((e) => (e.exerciseId === exerciseId ? { ...e, technique: value } : e));
+      const copy = [...days];
+      copy[dayIndex] = { ...day, exercises };
+      return copy;
+    });
+    this.techniqueQuery.delete(this.techniqueKey(dayIndex, exerciseId));
   }
 
   async save(): Promise<void> {

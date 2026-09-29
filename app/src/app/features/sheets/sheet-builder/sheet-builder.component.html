@@ -119,14 +119,31 @@
                         <input type="text" [(ngModel)]="entry.rest" />
                       </label>
                     </div>
-                    <label class="notes-field">
+                    <label class="notes-field technique-field">
                       {{ t.technique }}
-                      <select [(ngModel)]="entry.technique">
-                        <option value="">{{ t.techniqueNone }}</option>
-                        @for (tech of techniques; track tech.value) {
-                          <option [value]="tech.value">{{ tech.label }}</option>
-                        }
-                      </select>
+                      <input
+                        type="text"
+                        [placeholder]="t.techniqueNone"
+                        [ngModel]="techniqueQueryValue(activeDayIndex(), entry.exerciseId, entry.technique)"
+                        (ngModelChange)="onTechniqueQuery(activeDayIndex(), entry.exerciseId, $event)"
+                        (focus)="onTechniqueFocus(activeDayIndex(), entry.exerciseId)"
+                        (blur)="onTechniqueBlur(activeDayIndex(), entry.exerciseId)"
+                      />
+                      @if (isTechniqueOpen(activeDayIndex(), entry.exerciseId)) {
+                        <ul class="technique-list">
+                          <li class="technique-item technique-item-none" (mousedown)="selectTechnique(activeDayIndex(), entry.exerciseId, '')">
+                            {{ t.techniqueNone }}
+                          </li>
+                          @for (tech of techniqueMatches(activeDayIndex(), entry.exerciseId); track tech.value) {
+                            <li class="technique-item" (mousedown)="selectTechnique(activeDayIndex(), entry.exerciseId, tech.value)">
+                              <span class="technique-item-label">{{ tech.label }}</span>
+                              <span class="technique-item-desc">{{ tech.description }}</span>
+                            </li>
+                          } @empty {
+                            <li class="technique-empty">{{ t.techniqueNoMatch }}</li>
+                          }
+                        </ul>
+                      }
                     </label>
                     <label class="notes-field">
                       {{ t.notes }}

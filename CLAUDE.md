@@ -1,4 +1,4 @@
-# CLAUDE.md — Schede Allenamento
+# CLAUDE.md — Vigor (nome tecnico progetto/repo: schede-allenamento)
 
 App minimale per personal trainer (uso di Cinzia, sia per Steel Elite che per l'attività personale) per gestire clienti e le loro schede di allenamento, senza nessuna AI.
 

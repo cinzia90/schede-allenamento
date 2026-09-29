@@ -1,6 +1,6 @@
-# Schede Allenamento
+# Vigor
 
-App per personal trainer: gestione clienti e schede di allenamento (esercizi con immagine macchinario/esecuzione, serie/ripetizioni/recupero), con archivio delle schede precedenti per ogni cliente. Vedi [CLAUDE.md](./CLAUDE.md) per la specifica completa.
+App per personal trainer (nome in-app: **Vigor**; nome tecnico del progetto/repo: `schede-allenamento`): gestione clienti e schede di allenamento (esercizi con immagine macchinario/esecuzione, serie/ripetizioni/recupero), con archivio delle schede precedenti per ogni cliente. Vedi [CLAUDE.md](./CLAUDE.md) per la specifica completa.
 
 Nessuna registrazione self-service: un solo account trainer, con credenziali fisse (vedi sotto).
 
@@ -31,7 +31,7 @@ npm run start:demo
 
 Account demo pre-creato:
 
-- **Trainer**: `allenatore@schede-allenamento.it` / `SchedaForte2026!`
+- **Trainer**: `cinzia.rosato@vigor.app` / `cinzianuovavita!123`
 
 `environment.mock` è sempre `false` in sviluppo normale e in produzione: la modalità demo va attivata esplicitamente con `npm run start:demo` o `ng build --configuration demo`.
 

@@ -1,6 +1,6 @@
 export const it = {
   login: {
-    title: 'Schede Allenamento',
+    title: 'Vigor',
     email: 'Email',
     password: 'Password',
     submit: 'Accedi',
@@ -53,6 +53,7 @@ export const it = {
     rest: 'Recupero',
     technique: 'Tecnica',
     techniqueNone: 'Nessuna',
+    techniqueNoMatch: 'Nessuna tecnica trovata.',
     notes: 'Note',
     removeExercise: 'Rimuovi',
     save: 'Salva scheda',

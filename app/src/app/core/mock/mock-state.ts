@@ -13,7 +13,7 @@ export interface MockState {
   currentUserId: string | null;
 }
 
-const STORAGE_KEY = 'sa-mock-state-v1';
+const STORAGE_KEY = 'sa-mock-state-v2';
 
 function uuid(): string {
   return crypto.randomUUID();
@@ -26,7 +26,7 @@ export function seedState(): MockState {
   const clientId = uuid();
 
   return {
-    authUsers: [{ id: trainerId, email: 'allenatore@schede-allenamento.it', password: 'SchedaForte2026!' }],
+    authUsers: [{ id: trainerId, email: 'cinzia.rosato@vigor.app', password: 'cinzianuovavita!123' }],
     clients: [
       {
         id: clientId,

@@ -131,7 +131,7 @@ export class PdfExportService {
 
   private drawHeader(page: PDFPage, font: PDFFont, fontBold: PDFFont, client: Client, sheet: WorkoutSheet, y: number): number {
     this.drawLogo(page, MARGIN, y - 26);
-    page.drawText('SCHEDE ALLENAMENTO', { x: MARGIN + 34, y: y - 16, size: 13, font: fontBold, color: PRIMARY });
+    page.drawText('VIGOR', { x: MARGIN + 34, y: y - 16, size: 15, font: fontBold, color: PRIMARY });
 
     // Nome del coach: fisso per ora (un solo account trainer nell'app).
     const coachLabel = 'Coach: Cinzia Rosato';
