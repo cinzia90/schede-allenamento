@@ -1,7 +1,8 @@
 import {
   MUSCLE_GROUPS,
+  TRAINING_TECHNIQUES,
   exerciseImageUrl
-} from "./chunk-E65U22XO.js";
+} from "./chunk-ZPJJWAEE.js";
 import {
   Injectable,
   __async,
@@ -18741,6 +18742,18 @@ var COLUMNS = [
   ...Array.from({ length: WEEK_COLUMNS }, (_, i) => ({ label: `Sett. ${i + 1}`, width: 73 }))
 ];
 var muscleGroupLabel = (value) => MUSCLE_GROUPS.find((mg) => mg.value === value)?.label ?? value;
+var techniqueLabel = (value) => value ? TRAINING_TECHNIQUES.find((t) => t.value === value)?.label ?? null : null;
+function summarizeMuscles(day, exercisesById) {
+  const values2 = /* @__PURE__ */ new Set();
+  for (const entry of day.exercises) {
+    const exercise = exercisesById.get(entry.exerciseId);
+    exercise?.primaryMuscles.forEach((m) => values2.add(m));
+  }
+  if (values2.size === 0) {
+    return day.muscleGroups.map(muscleGroupLabel).join(", ");
+  }
+  return [...values2].map(muscleGroupLabel).join(", ");
+}
 var PdfExportService = class _PdfExportService {
   downloadSheet(client, sheet, exercisesById) {
     return __async(this, null, function* () {
@@ -18773,7 +18786,7 @@ var PdfExportService = class _PdfExportService {
       y = this.drawHeader(page, font, fontBold, client, sheet, y);
       for (const day of sheet.days) {
         ensureSpace(50);
-        const muscleSummary = day.muscleGroups.map(muscleGroupLabel).join(", ");
+        const muscleSummary = summarizeMuscles(day, exercisesById);
         const dayTitle = muscleSummary ? `${day.label} \u2014 ${muscleSummary}` : day.label;
         page.drawRectangle({ x: MARGIN, y: y - 20, width: CONTENT_WIDTH, height: 22, color: PRIMARY });
         page.drawText(dayTitle.toUpperCase(), { x: MARGIN + 8, y: y - 15, size: 10.5, font: fontBold, color: rgb(1, 1, 1) });
@@ -18788,10 +18801,11 @@ var PdfExportService = class _PdfExportService {
           const images = exercise ? yield this.embedExerciseImages(doc, exercise) : [];
           const nameEn = exercise?.name ?? entry.exerciseId;
           const nameIt = exercise?.nameIt ?? null;
-          const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes);
+          const technique = techniqueLabel(entry.technique);
+          const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes, !!technique);
           const setRowHeight = 20;
           ensureSpace(headerHeight + 18 + setRowHeight);
-          y = this.drawExerciseHeader(page, font, fontBold, fontItalic, y, headerHeight, images, nameEn, nameIt, entry.notes);
+          y = this.drawExerciseHeader(page, font, fontBold, fontItalic, y, headerHeight, images, nameEn, nameIt, technique, entry.notes);
           y = this.drawColumnHeader(page, fontBold, y);
           for (let setIndex = 1; setIndex <= entry.sets; setIndex++) {
             if (ensureSpace(setRowHeight)) {
@@ -18827,14 +18841,17 @@ var PdfExportService = class _PdfExportService {
     page.drawEllipse({ x: x + 1, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
     page.drawEllipse({ x: x + 27, y: barY, xScale: 2, yScale: 5.5, color: PRIMARY });
   }
-  exerciseHeaderHeight(hasImages, hasNotes) {
+  exerciseHeaderHeight(hasImages, hasNotes, hasTechnique) {
     let h = hasImages ? IMAGE_SIZE + 8 : 22;
     if (hasNotes) {
       h += 12;
     }
+    if (hasTechnique) {
+      h += 12;
+    }
     return h;
   }
-  drawExerciseHeader(page, font, fontBold, fontItalic, y, height, images, nameEn, nameIt, notes) {
+  drawExerciseHeader(page, font, fontBold, fontItalic, y, height, images, nameEn, nameIt, technique, notes) {
     page.drawRectangle({ x: MARGIN, y: y - height, width: CONTENT_WIDTH, height, borderColor: BORDER, borderWidth: 0.5, color: PRIMARY_TINT });
     let textX = MARGIN + 8;
     const imagesY = y - height / 2 - IMAGE_SIZE / 2;
@@ -18843,13 +18860,19 @@ var PdfExportService = class _PdfExportService {
       textX += IMAGE_SIZE + 6;
     }
     const textMaxWidth = MARGIN + CONTENT_WIDTH - textX - 8;
+    const extraLines = (technique ? 1 : 0) + (notes ? 1 : 0);
     const label = nameIt ? `${nameEn}  \u2014  ${nameIt}` : nameEn;
     const truncated = this.truncateToWidth(label, fontBold, 10, textMaxWidth);
-    const nameY = notes ? y - height / 2 : y - height / 2 - 3;
-    page.drawText(truncated, { x: textX, y: nameY, size: 10, font: fontBold, color: TEXT_DARK });
+    let lineY = extraLines > 0 ? y - height / 2 + extraLines * 12 / 2 : y - height / 2 - 3;
+    page.drawText(truncated, { x: textX, y: lineY, size: 10, font: fontBold, color: TEXT_DARK });
+    if (technique) {
+      lineY -= 13;
+      page.drawText(`Tecnica: ${technique}`, { x: textX, y: lineY, size: 8, font: fontBold, color: PRIMARY });
+    }
     if (notes) {
+      lineY -= 13;
       const truncatedNotes = this.truncateToWidth(notes, fontItalic, 8, textMaxWidth);
-      page.drawText(truncatedNotes, { x: textX, y: nameY - 13, size: 8, font: fontItalic, color: TEXT_MUTED });
+      page.drawText(truncatedNotes, { x: textX, y: lineY, size: 8, font: fontItalic, color: TEXT_MUTED });
     }
     return y - height;
   }
@@ -18956,4 +18979,4 @@ tslib/tslib.es6.js:
   PERFORMANCE OF THIS SOFTWARE.
   ***************************************************************************** *)
 */
-//# sourceMappingURL=chunk-23J7LATN.js.map
+//# sourceMappingURL=chunk-VT3LP533.js.map

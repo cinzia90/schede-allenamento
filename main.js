@@ -34,32 +34,32 @@ var authGuard = (_route, state) => __async(null, null, function* () {
 var routes = [
   {
     path: "login",
-    loadComponent: () => import("./chunk-TADXUOGK.js").then((m) => m.LoginComponent)
+    loadComponent: () => import("./chunk-GE6RPONY.js").then((m) => m.LoginComponent)
   },
   {
     path: "",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-P4MRXXOF.js").then((m) => m.ClientListComponent)
+    loadComponent: () => import("./chunk-CW2FRL47.js").then((m) => m.ClientListComponent)
   },
   {
     path: "clienti/:id",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-XQRPKPT3.js").then((m) => m.ClientDetailComponent)
+    loadComponent: () => import("./chunk-MOWI3LXH.js").then((m) => m.ClientDetailComponent)
   },
   {
     path: "clienti/:id/schede/nuova",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-IGVP7FKO.js").then((m) => m.SheetBuilderComponent)
+    loadComponent: () => import("./chunk-Y5WT5EEK.js").then((m) => m.SheetBuilderComponent)
   },
   {
     path: "clienti/:id/schede/:sheetId/modifica",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-IGVP7FKO.js").then((m) => m.SheetBuilderComponent)
+    loadComponent: () => import("./chunk-Y5WT5EEK.js").then((m) => m.SheetBuilderComponent)
   },
   {
     path: "clienti/:id/schede/:sheetId",
     canActivate: [authGuard],
-    loadComponent: () => import("./chunk-YFHNBZHA.js").then((m) => m.SheetViewComponent)
+    loadComponent: () => import("./chunk-PBK6DYX5.js").then((m) => m.SheetViewComponent)
   },
   { path: "**", redirectTo: "" }
 ];

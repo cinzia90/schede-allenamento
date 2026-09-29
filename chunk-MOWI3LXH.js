@@ -1,15 +1,15 @@
 import {
   PdfExportService
-} from "./chunk-23J7LATN.js";
+} from "./chunk-VT3LP533.js";
 import {
   ExerciseLibraryService
-} from "./chunk-E65U22XO.js";
+} from "./chunk-ZPJJWAEE.js";
 import {
   DataService
 } from "./chunk-TTYTNCN5.js";
 import {
   it
-} from "./chunk-NSMX62OF.js";
+} from "./chunk-XVYSBFXJ.js";
 import {
   ActivatedRoute,
   CommonModule,
@@ -309,4 +309,4 @@ var ClientDetailComponent = class _ClientDetailComponent {
 export {
   ClientDetailComponent
 };
-//# sourceMappingURL=chunk-XQRPKPT3.js.map
+//# sourceMappingURL=chunk-MOWI3LXH.js.map

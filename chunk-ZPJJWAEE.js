@@ -46,6 +46,24 @@ var ExerciseLibraryService = class _ExerciseLibraryService {
   }], null, null);
 })();
 
+// src/app/shared/models/client.model.ts
+var TRAINING_TECHNIQUES = [
+  { value: "cedimento", label: "Cedimento (a sfinimento)" },
+  { value: "rest-pause", label: "Rest-pause" },
+  { value: "drop-set", label: "Drop set (stripping)" },
+  { value: "back-off", label: "Back-off set" },
+  { value: "superserie", label: "Superserie" },
+  { value: "serie-gigante", label: "Serie gigante" },
+  { value: "piramidale", label: "Piramidale" },
+  { value: "pre-affaticamento", label: "Pre-affaticamento" },
+  { value: "forzate", label: "Ripetizioni forzate" },
+  { value: "parziali", label: "Ripetizioni parziali" },
+  { value: "21s", label: "Serie a 21" },
+  { value: "myo-reps", label: "Myo-reps" },
+  { value: "cluster-set", label: "Cluster set" },
+  { value: "isometria", label: "Isometria" }
+];
+
 // src/app/shared/models/exercise.model.ts
 var EXERCISE_IMAGE_BASE = "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/";
 function exerciseImageUrl(path) {
@@ -89,10 +107,11 @@ var LOWER_BODY_GROUPS = ["lower back", "quadriceps", "hamstrings", "glutes", "ca
 
 export {
   ExerciseLibraryService,
+  TRAINING_TECHNIQUES,
   exerciseImageUrl,
   exerciseDisplayName,
   MUSCLE_GROUPS,
   UPPER_BODY_GROUPS,
   LOWER_BODY_GROUPS
 };
-//# sourceMappingURL=chunk-E65U22XO.js.map
+//# sourceMappingURL=chunk-ZPJJWAEE.js.map

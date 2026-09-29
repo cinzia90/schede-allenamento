@@ -50,6 +50,8 @@ var it = {
     sets: "Serie",
     reps: "Ripetizioni",
     rest: "Recupero",
+    technique: "Tecnica",
+    techniqueNone: "Nessuna",
     notes: "Note",
     removeExercise: "Rimuovi",
     save: "Salva scheda",
@@ -63,4 +65,4 @@ var it = {
 export {
   it
 };
-//# sourceMappingURL=chunk-NSMX62OF.js.map
+//# sourceMappingURL=chunk-XVYSBFXJ.js.map
