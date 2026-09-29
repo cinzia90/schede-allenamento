@@ -19,7 +19,12 @@
           @for (sheet of sheets(); track sheet.id) {
             <li class="sheet-card">
               <div class="sheet-info">
-                <span class="title">{{ sheet.title }}</span>
+                <span class="title">
+                  {{ sheet.title }}
+                  @if (isSheetStale(sheet)) {
+                    <span class="stale-badge" [title]="t.staleWarning">{{ t.staleBadge }}</span>
+                  }
+                </span>
                 <span class="date">{{ t.createdOn }} {{ sheet.created_at | date: 'dd/MM/yyyy' }}</span>
               </div>
               <div class="sheet-actions">

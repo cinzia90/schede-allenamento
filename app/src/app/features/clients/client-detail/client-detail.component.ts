@@ -67,6 +67,11 @@ export class ClientDetailComponent {
     this.sheets.update((list) => list.filter((s) => s.id !== sheet.id));
   }
 
+  isSheetStale(sheet: WorkoutSheet): boolean {
+    const days = (Date.now() - new Date(sheet.created_at).getTime()) / (1000 * 60 * 60 * 24);
+    return days > 30;
+  }
+
   async downloadSheet(sheet: WorkoutSheet): Promise<void> {
     const client = this.client();
     if (!client) {

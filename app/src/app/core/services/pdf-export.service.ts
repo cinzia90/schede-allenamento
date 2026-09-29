@@ -35,7 +35,7 @@ const COLUMNS: Column[] = [
 ];
 
 const muscleGroupLabel = (value: string): string => MUSCLE_GROUPS.find((mg) => mg.value === value)?.label ?? value;
-const techniqueLabel = (value: string): string | null => (value ? TRAINING_TECHNIQUES.find((t) => t.value === value)?.label ?? null : null);
+const findTechnique = (value: string) => (value ? TRAINING_TECHNIQUES.find((t) => t.value === value) ?? null : null);
 
 // Titolo del giorno basato sui muscoli davvero coinvolti dagli esercizi
 // scelti (non sui filtri usati per cercarli, che possono essere piu' ampi).
@@ -104,7 +104,7 @@ export class PdfExportService {
         const nameEn = exercise?.name ?? entry.exerciseId;
         const nameIt = exercise?.nameIt ?? null;
 
-        const technique = techniqueLabel(entry.technique);
+        const technique = findTechnique(entry.technique);
         const headerHeight = this.exerciseHeaderHeight(images.length > 0, !!entry.notes, !!technique);
         const setRowHeight = 20;
 
@@ -132,6 +132,12 @@ export class PdfExportService {
   private drawHeader(page: PDFPage, font: PDFFont, fontBold: PDFFont, client: Client, sheet: WorkoutSheet, y: number): number {
     this.drawLogo(page, MARGIN, y - 26);
     page.drawText('SCHEDE ALLENAMENTO', { x: MARGIN + 34, y: y - 16, size: 13, font: fontBold, color: PRIMARY });
+
+    // Nome del coach: fisso per ora (un solo account trainer nell'app).
+    const coachLabel = 'Coach: Cinzia Rosato';
+    const coachWidth = font.widthOfTextAtSize(coachLabel, 10);
+    page.drawText(coachLabel, { x: PAGE_WIDTH - MARGIN - coachWidth, y: y - 16, size: 10, font, color: TEXT_MUTED });
+
     y -= 46;
 
     page.drawText(`${client.first_name} ${client.last_name}`, { x: MARGIN, y, size: 17, font: fontBold, color: TEXT_DARK });
@@ -175,7 +181,7 @@ export class PdfExportService {
     images: PDFImage[],
     nameEn: string,
     nameIt: string | null,
-    technique: string | null,
+    technique: { label: string; description: string } | null,
     notes: string,
   ): number {
     page.drawRectangle({ x: MARGIN, y: y - height, width: CONTENT_WIDTH, height, borderColor: BORDER, borderWidth: 0.5, color: PRIMARY_TINT });
@@ -196,7 +202,8 @@ export class PdfExportService {
 
     if (technique) {
       lineY -= 13;
-      page.drawText(`Tecnica: ${technique}`, { x: textX, y: lineY, size: 8, font: fontBold, color: PRIMARY });
+      const techniqueLine = this.truncateToWidth(`Tecnica: ${technique.label} — ${technique.description}`, font, 7.5, textMaxWidth);
+      page.drawText(techniqueLine, { x: textX, y: lineY, size: 7.5, font, color: PRIMARY });
     }
 
     if (notes) {

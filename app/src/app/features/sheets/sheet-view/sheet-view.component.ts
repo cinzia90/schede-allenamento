@@ -54,11 +54,11 @@ export class SheetViewComponent {
     return this.exerciseById.get(id);
   }
 
-  techniqueLabel(value: string): string | null {
+  technique(value: string): { label: string; description: string } | null {
     if (!value) {
       return null;
     }
-    return TRAINING_TECHNIQUES.find((t) => t.value === value)?.label ?? null;
+    return TRAINING_TECHNIQUES.find((t) => t.value === value) ?? null;
   }
 
   back(): void {

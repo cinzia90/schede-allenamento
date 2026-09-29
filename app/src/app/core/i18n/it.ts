@@ -29,6 +29,8 @@ export const it = {
     deleteConfirm: 'Eliminare questa scheda? Non si può annullare.',
     download: 'Scarica PDF',
     createdOn: 'Creata il',
+    staleBadge: '⚠ Oltre 30 giorni',
+    staleWarning: 'Questa scheda ha più di 30 giorni: valuta se aggiornarla.',
   },
   sheetBuilder: {
     titleNew: 'Nuova scheda',

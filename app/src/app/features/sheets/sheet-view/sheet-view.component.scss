@@ -29,7 +29,8 @@
 
   h1 {
     margin: 0 0 4px;
-    font-size: 20px;
+    font-size: 22px;
+    font-weight: 800;
   }
 
   .client-name {
@@ -48,13 +49,15 @@
 .day-card {
   background: var(--sa-surface);
   border: 1px solid var(--sa-border);
-  border-radius: var(--sa-radius-md);
-  padding: var(--sa-space-3);
+  border-radius: var(--sa-radius-lg);
+  padding: var(--sa-space-4);
   margin-bottom: var(--sa-space-3);
+  box-shadow: var(--sa-shadow-sm);
 
   h2 {
     margin: 0 0 var(--sa-space-2);
     font-size: 16px;
+    font-weight: 700;
   }
 }
 
@@ -74,6 +77,11 @@
   border: 1px solid var(--sa-border);
   border-radius: var(--sa-radius-sm);
   padding: var(--sa-space-2);
+  transition: box-shadow 0.15s ease;
+
+  &:hover {
+    box-shadow: var(--sa-shadow-sm);
+  }
 }
 
 .thumbs {
@@ -108,13 +116,14 @@
   }
 
   .exercise-technique {
-    align-self: flex-start;
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 600;
-    color: var(--sa-primary-dark);
-    background: color-mix(in srgb, var(--sa-primary) 12%, transparent);
-    border-radius: 999px;
-    padding: 2px 8px;
+    color: var(--sa-accent);
+
+    &::before {
+      content: '● ';
+      font-size: 8px;
+    }
   }
 
   .exercise-notes {
@@ -128,11 +137,17 @@ button.ghost {
   padding: 8px 12px;
   border: 1px solid var(--sa-border);
   border-radius: var(--sa-radius-sm);
-  background: transparent;
+  background: var(--sa-surface);
   color: var(--sa-text);
   font: inherit;
   font-size: 13px;
   cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--sa-primary);
+    background: color-mix(in srgb, var(--sa-primary) 5%, var(--sa-surface));
+  }
 
   &:disabled {
     opacity: 0.6;
@@ -143,9 +158,14 @@ button.danger {
   padding: 8px 12px;
   border: 1px solid var(--sa-danger);
   border-radius: var(--sa-radius-sm);
-  background: transparent;
+  background: var(--sa-surface);
   color: var(--sa-danger);
   font: inherit;
   font-size: 13px;
   cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: rgba(220, 38, 38, 0.06);
+  }
 }

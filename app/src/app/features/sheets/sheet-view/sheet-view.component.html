@@ -31,8 +31,8 @@
                 <div class="exercise-info">
                   <span class="exercise-name">{{ exerciseDisplayName(ex) }}</span>
                   <span class="exercise-meta">Serie {{ entry.sets }} &middot; Rip {{ entry.reps }} &middot; Recupero {{ entry.rest }}</span>
-                  @if (techniqueLabel(entry.technique); as techLabel) {
-                    <span class="exercise-technique">{{ techLabel }}</span>
+                  @if (technique(entry.technique); as tech) {
+                    <span class="exercise-technique">{{ tech.label }} — {{ tech.description }}</span>
                   }
                   @if (entry.notes) {
                     <span class="exercise-notes">{{ entry.notes }}</span>
