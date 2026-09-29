@@ -9,7 +9,7 @@ import {
 } from "./chunk-TTYTNCN5.js";
 import {
   it
-} from "./chunk-US7FFABL.js";
+} from "./chunk-XOIFB2E7.js";
 import {
   ActivatedRoute,
   CommonModule,
@@ -309,4 +309,4 @@ var ClientDetailComponent = class _ClientDetailComponent {
 export {
   ClientDetailComponent
 };
-//# sourceMappingURL=chunk-I52WBR57.js.map
+//# sourceMappingURL=chunk-U4YNG5XA.js.map

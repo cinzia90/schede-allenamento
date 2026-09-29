@@ -40,8 +40,8 @@ var it = {
     dayLabel: "Giorno",
     dayLabelPlaceholder: "Es. Petto e Tricipiti",
     muscleGroups: "Gruppi muscolari",
-    addExercise: "Aggiungi esercizio",
-    chooseExercise: "Scegli un esercizio\u2026",
+    chooseExercise: "Cerca un esercizio\u2026",
+    noExercisesMatch: "Nessun esercizio trovato.",
     sets: "Serie",
     reps: "Ripetizioni",
     rest: "Recupero",
@@ -58,4 +58,4 @@ var it = {
 export {
   it
 };
-//# sourceMappingURL=chunk-US7FFABL.js.map
+//# sourceMappingURL=chunk-XOIFB2E7.js.map
