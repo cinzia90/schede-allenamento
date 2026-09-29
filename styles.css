@@ -1,0 +1,41 @@
+/* src/styles.scss */
+:root {
+  --sa-primary: #4f46e5;
+  --sa-primary-dark: #4338ca;
+  --sa-bg: #f8fafc;
+  --sa-surface: #ffffff;
+  --sa-border: #e2e8f0;
+  --sa-text: #1e293b;
+  --sa-text-muted: #64748b;
+  --sa-danger: #dc2626;
+  --sa-success: #16a34a;
+  --sa-radius-sm: 6px;
+  --sa-radius-md: 10px;
+  --sa-radius-lg: 14px;
+  --sa-space-1: 4px;
+  --sa-space-2: 8px;
+  --sa-space-3: 16px;
+  --sa-space-4: 24px;
+  --sa-space-5: 40px;
+  --sa-font:
+    "Inter",
+    system-ui,
+    sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--sa-bg);
+  color: var(--sa-text);
+  font-family: var(--sa-font);
+}
+a {
+  color: var(--sa-primary);
+}
+
+/* angular:styles/global:styles */
+/*# sourceMappingURL=styles.css.map */

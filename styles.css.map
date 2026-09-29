@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/shared/styles/_tokens.scss", "src/styles.scss"],
+  "sourcesContent": ["// Design token neutri: questo tool serve sia per Steel Elite sia per\n// l'attività personale, quindi niente branding di una palestra specifica.\n:root {\n  --sa-primary: #4f46e5;\n  --sa-primary-dark: #4338ca;\n  --sa-bg: #f8fafc;\n  --sa-surface: #ffffff;\n  --sa-border: #e2e8f0;\n  --sa-text: #1e293b;\n  --sa-text-muted: #64748b;\n  --sa-danger: #dc2626;\n  --sa-success: #16a34a;\n\n  --sa-radius-sm: 6px;\n  --sa-radius-md: 10px;\n  --sa-radius-lg: 14px;\n\n  --sa-space-1: 4px;\n  --sa-space-2: 8px;\n  --sa-space-3: 16px;\n  --sa-space-4: 24px;\n  --sa-space-5: 40px;\n\n  --sa-font: 'Inter', system-ui, sans-serif;\n}\n", "@use 'app/shared/styles/tokens';\n\n* {\n  box-sizing: border-box;\n}\n\nhtml,\nbody {\n  margin: 0;\n  padding: 0;\n  background: var(--sa-bg);\n  color: var(--sa-text);\n  font-family: var(--sa-font);\n}\n\na {\n  color: var(--sa-primary);\n}\n"],
+  "mappings": ";AAEA;AACE,gBAAA;AACA,qBAAA;AACA,WAAA;AACA,gBAAA;AACA,eAAA;AACA,aAAA;AACA,mBAAA;AACA,eAAA;AACA,gBAAA;AAEA,kBAAA;AACA,kBAAA;AACA,kBAAA;AAEA,gBAAA;AACA,gBAAA;AACA,gBAAA;AACA,gBAAA;AACA,gBAAA;AAEA;IAAA,OAAA;IAAA,SAAA;IAAA;;ACrBF;AACE,cAAA;;AAGF;AAAA;AAEE,UAAA;AACA,WAAA;AACA,cAAA,IAAA;AACA,SAAA,IAAA;AACA,eAAA,IAAA;;AAGF;AACE,SAAA,IAAA;;",
+  "names": []
+}
