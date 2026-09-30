@@ -33,3 +33,12 @@ h2,
 h3 {
   letter-spacing: -0.02em;
 }
+
+// Mai sotto i 16px sui campi di input: iOS Safari zooma automaticamente
+// la pagina quando metti il focus su un campo con testo piu' piccolo,
+// e a volte lo zoom resta anche dopo aver tolto il focus.
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}

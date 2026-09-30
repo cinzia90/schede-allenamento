@@ -31,7 +31,7 @@ export const it = {
     createdOn: 'Creata il',
     staleBadge: '⚠ Oltre 30 giorni',
     staleWarning: 'Questa scheda ha più di 30 giorni: valuta se aggiornarla.',
-    dangerZone: 'Zona pericolosa',
+    dangerZone: 'Operazioni aggiuntive',
     deleteClient: 'Elimina cliente',
     deleteClientHint: 'Elimina definitivamente il cliente e tutte le sue schede. Non si può annullare.',
     deleteClientConfirm: "Eliminare {name} e tutte le sue {count} schede? L'azione non si può annullare.",
