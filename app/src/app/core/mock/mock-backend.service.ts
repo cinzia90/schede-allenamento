@@ -82,6 +82,12 @@ export class MockBackendService {
     return client;
   }
 
+  deleteClient(clientId: string): void {
+    this.state.clients = this.state.clients.filter((c) => c.id !== clientId);
+    this.state.sheets = this.state.sheets.filter((s) => s.client_id !== clientId);
+    this.persist();
+  }
+
   // ===== Schede =====
 
   listSheetsForClient(clientId: string): WorkoutSheet[] {

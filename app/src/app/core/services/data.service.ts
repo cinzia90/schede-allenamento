@@ -113,4 +113,15 @@ export class DataService {
     const { error } = await this.supabase.client.from('workout_sheets').delete().eq('id', sheetId);
     if (error) throw error;
   }
+
+  // Elimina il cliente e, a cascata, tutte le sue schede (on delete cascade
+  // nella migrazione; in mock lo facciamo a mano).
+  async deleteClient(clientId: string): Promise<void> {
+    if (environment.mock) {
+      this.mock.deleteClient(clientId);
+      return;
+    }
+    const { error } = await this.supabase.client.from('clients').delete().eq('id', clientId);
+    if (error) throw error;
+  }
 }

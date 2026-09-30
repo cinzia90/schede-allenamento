@@ -22,6 +22,7 @@ export class ClientDetailComponent {
   readonly sheets = signal<WorkoutSheet[]>([]);
   readonly loading = signal(true);
   readonly downloadingId = signal<string | null>(null);
+  readonly deletingClient = signal(false);
 
   private clientId = '';
 
@@ -70,6 +71,23 @@ export class ClientDetailComponent {
   isSheetStale(sheet: WorkoutSheet): boolean {
     const days = (Date.now() - new Date(sheet.created_at).getTime()) / (1000 * 60 * 60 * 24);
     return days > 30;
+  }
+
+  async deleteClient(): Promise<void> {
+    const client = this.client();
+    if (!client) {
+      return;
+    }
+    const count = this.sheets().length;
+    const message = this.t.deleteClientConfirm
+      .replace('{name}', `${client.first_name} ${client.last_name}`)
+      .replace('{count}', String(count));
+    if (!confirm(message)) {
+      return;
+    }
+    this.deletingClient.set(true);
+    await this.data.deleteClient(client.id);
+    this.router.navigateByUrl('/');
   }
 
   async downloadSheet(sheet: WorkoutSheet): Promise<void> {

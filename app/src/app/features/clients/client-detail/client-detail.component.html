@@ -40,5 +40,13 @@
         </ul>
       }
     }
+
+    <section class="danger-zone">
+      <h2>{{ t.dangerZone }}</h2>
+      <p class="danger-hint">{{ t.deleteClientHint }}</p>
+      <button type="button" class="danger-outline" [disabled]="deletingClient()" (click)="deleteClient()">
+        {{ t.deleteClient }}
+      </button>
+    </section>
   }
 </div>
